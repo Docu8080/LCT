@@ -9,6 +9,7 @@ import random
 import secrets
 import smtplib
 import sqlite3
+import re
 import threading
 import time
 from contextlib import contextmanager, asynccontextmanager
@@ -19,6 +20,7 @@ from xml.sax.saxutils import escape
 from fastapi import FastAPI, HTTPException, Request, Response, Depends
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.concurrency import run_in_threadpool
 from pydantic import BaseModel, Field, StrictBool, field_validator
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -28,6 +30,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 
 from assessment import SPECIALIZATIONS, GRADES, generate, evaluate, public_questions
 from matching import rank_candidate
+from resume import parse_resume, MAX_PDF_BYTES, SKILLS
 
 ROOT = Path(__file__).parent
 DB_PATH = Path(os.environ.get("FSP_DATABASE", str(ROOT / "data/fsp.sqlite3")))
@@ -74,6 +77,7 @@ CREATE TABLE IF NOT EXISTS task_answers(id INTEGER PRIMARY KEY,assignment INTEGE
  candidate INTEGER REFERENCES users(id),employer INTEGER REFERENCES users(id),answer TEXT,score INTEGER,feedback TEXT,created REAL);
 CREATE TABLE IF NOT EXISTS notifications(id INTEGER PRIMARY KEY,user_id INTEGER REFERENCES users(id),title TEXT,body TEXT,created REAL,seen INTEGER DEFAULT 0);
 CREATE TABLE IF NOT EXISTS audit(id INTEGER PRIMARY KEY,actor INTEGER,action TEXT,target TEXT,created REAL);
+CREATE TABLE IF NOT EXISTS demo_pairs(token TEXT PRIMARY KEY,expires REAL NOT NULL);
 """
 REGISTRY = {
  f"FSP-DEMO-{i:03}": [{"event": f"Кубок спортивного программирования · {2024+i%3}",
@@ -155,6 +159,7 @@ def has_contacts(conn,employer,candidate):
 def view_candidate(conn,candidate,employer=None,own=False):
     p=profile(conn,candidate)
     user=conn.execute("SELECT * FROM users WHERE id=?",(candidate,)).fetchone()
+    if not own and employer is not None and not same_demo_scope(conn,employer,candidate):raise HTTPException(404,"Профиль недоступен")
     if not own and (not p.get("published") or not user["consent"]):raise HTTPException(404,"Профиль недоступен")
     allowed=own or (employer is not None and has_contacts(conn,employer,candidate))
     out={k:v for k,v in p.items() if k not in {"email","phone","telegram","name","fsp_pending","fsp_code","fsp_code_expires"}}
@@ -173,6 +178,7 @@ def initialize():
     columns={row[1] for row in conn.execute('PRAGMA table_info(users)')}
     for name,declaration in PRIVACY_COLUMNS.items():
         if name not in columns:conn.execute(f'ALTER TABLE users ADD COLUMN {name} {declaration}')
+    if 'demo_scope' not in columns:conn.execute('ALTER TABLE users ADD COLUMN demo_scope TEXT')
     notification_columns={row[1] for row in conn.execute('PRAGMA table_info(notifications)')}
     if 'related_user' not in notification_columns:
         conn.execute('ALTER TABLE notifications ADD COLUMN related_user INTEGER')
@@ -279,7 +285,10 @@ limiter_lock=threading.Lock()
 @app.middleware("http")
 async def protection(request,call_next):
     if request.url.path.startswith("/api/"):
-        if int(request.headers.get("content-length","0"))>100_000:return JSONResponse({"detail":"Слишком большой запрос"},413)
+        limit=MAX_PDF_BYTES if request.url.path=='/api/candidate/resume/preview' else 100_000
+        try:length=int(request.headers.get("content-length","0"))
+        except ValueError:return JSONResponse({"detail":"Некорректная длина запроса"},400)
+        if length<0 or length>limit:return JSONResponse({"detail":"Слишком большой запрос"},413)
         if request.method in {"POST","PATCH","PUT","DELETE"}:
             origin=request.headers.get("origin")
             if origin and origin not in {f"http://{request.headers.get('host')}",f"https://{request.headers.get('host')}"}:
@@ -370,7 +379,7 @@ def session_response(conn,user,response):
     token,csrf=secrets.token_urlsafe(32),secrets.token_urlsafe(32)
     conn.execute("INSERT INTO sessions VALUES(?,?,?,?)",(digest(token),user["id"],csrf,time.time()+86400))
     response.set_cookie("fsp_session",token,max_age=86400,httponly=True,samesite="strict",secure=COOKIE_SECURE,path="/")
-    return {"id":user["id"],"email":user["email"],"name":user["name"],"role":user["role"],"csrf":csrf,"demo":DEMO}
+    return {"id":user["id"],"email":user["email"],"name":user["name"],"role":user["role"],"csrf":csrf,"demo":DEMO,"browser_demo":bool(user['demo_scope'])}
 
 
 @app.post("/api/auth/register",status_code=201,tags=["Авторизация"])
@@ -445,7 +454,76 @@ def logout(request:Request,response:Response,user=Depends(current)):
 
 @app.get("/api/auth/me",tags=["Авторизация"])
 def me(user=Depends(current)):
-    return {k:user[k] for k in ("id","email","role","name","csrf")}|{"demo":DEMO,"consent_version":CONSENT_VERSION}
+    return {k:user[k] for k in ("id","email","role","name","csrf")}|{"demo":DEMO,"browser_demo":bool(user['demo_scope']),"consent_version":CONSENT_VERSION}
+
+
+def same_demo_scope(conn,viewer,target):
+    rows=conn.execute('SELECT id,demo_scope FROM users WHERE id IN (?,?)',(viewer,target)).fetchall()
+    scopes={r['id']:r['demo_scope'] for r in rows}
+    return viewer in scopes and target in scopes and scopes[viewer]==scopes[target]
+
+
+def erase_demo(conn,scope):
+    for row in conn.execute('SELECT id FROM users WHERE demo_scope=?',(scope,)).fetchall():erase_user(conn,row['id'])
+    conn.execute('DELETE FROM demo_pairs WHERE token=?',(scope,))
+
+
+def create_demo(conn,scope,now):
+    conn.execute('INSERT INTO demo_pairs VALUES(?,?)',(scope,now+7*86400))
+    ids={}
+    for key,role,name in [('candidate','candidate','Александр · личное демо'),('fresh','candidate','Новый участник · личное демо'),('employer','employer','Алина · личное демо')]:
+        # Password login is unavailable for browser-owned synthetic accounts.
+        address=secrets.token_hex(16)+'@demo.invalid'
+        uid=conn.execute("INSERT INTO users(email,role,name,password,verified,consent_version,created,acceptance_source,demo_scope) VALUES(?,?,?,?,1,?,?,'synthetic_demo',?)",(address,role,name,ERASURE_DUMMY_PASSWORD,CONSENT_VERSION,now,scope)).lastrowid
+        ids[key]=uid
+        if role=='candidate':
+            p=ProfileData(name=name,title='Python-разработчик',about='Создаю API на Python и работаю с SQL. Синтетический профиль личного сценария.',phone='+7 900 000 00 00',telegram='@demo_talent',skills=['Python','FastAPI','SQL','PostgreSQL','Docker'],experience=3,city='Москва',salary=190000,work_format='remote',team_role='Разработчик',soft_skills='Работа в команде',specialization='backend',declared_grade='Middle',published=key=='candidate',show_fsp=True).model_dump()
+            p['fsp_id']='FSP-DEMO-001' if key=='candidate' else None
+            conn.execute('INSERT INTO profiles VALUES(?,?,?)',(uid,dumps(p),now))
+            if key=='candidate':
+                result={'score':86,'theta':.75,'confidence':95,'source':'Синтетический демо-профиль','verified_skills':['Python','FastAPI','SQL'],'topics':[{'name':'Алгоритмы','score':90},{'name':'Данные и SQL','score':85},{'name':'API и архитектура','score':70}]}
+                conn.execute('INSERT INTO categories(user_id,spec,grade,data,verified_at) VALUES(?,?,?,?,?)',(uid,'backend','Middle',dumps(result),now-35*86400))
+        else:conn.execute('INSERT INTO companies VALUES(?,?)',(uid,dumps({'name':'Север Код · личное демо','description':'Синтетическая продуктовая команда вашего браузера.','contact':'talent@severcode.example.org','website':'https://example.org','industry':'ИТ'})))
+    need={'title':'Python Backend Developer','specialization':'backend','grade':'Middle','skills':['Python','FastAPI','PostgreSQL'],'description':'Разрабатывать API продуктовой платформы, работать с PostgreSQL и участвовать в проектировании сервисов.','salary_from':180000,'salary_to':260000,'work_format':'remote','city':'Москва'}
+    conn.execute('INSERT INTO needs(employer,data,published,created) VALUES(?,?,1,?)',(ids['employer'],dumps(need),now))
+    invitation={k:v for k,v in need.items() if k in {'title','description','salary_from','salary_to','work_format'}}
+    invitation['contact']='talent@severcode.example.org'
+    conn.execute("INSERT INTO invitations(employer,candidate,data,status,created,updated) VALUES(?,?,?,'sent',?,?)",(ids['employer'],ids['candidate'],dumps(invitation),now,now))
+    notify(conn,ids['candidate'],'Новое приглашение от Север Код',need['title'],related_user=ids['employer'])
+    task={'specialization':'backend','grade':'Middle','title':'API без повторных списаний','description':'Предложите защиту платёжного API от повторного запроса: ключи идемпотентности, транзакции и обработку параллельных обращений.','keywords':['идемпот','ключ','транзак'],'rubric':['Корректность','Полнота','Обоснование'],'topic':'API и архитектура'}
+    conn.execute('INSERT INTO tasks(employer,data,created) VALUES(?,?,?)',(ids['employer'],dumps(task),now))
+
+
+class DemoData(BaseModel):
+    model_config={'extra':'forbid'}
+    role:Literal['candidate','fresh','employer']='candidate'
+    reset:StrictBool=False
+
+
+@app.post('/api/auth/demo',tags=['Авторизация'])
+def browser_demo(data:DemoData,request:Request,response:Response):
+    if not DEMO:raise HTTPException(404,'Демо-режим отключён')
+    if request.headers.get('origin')!=f'{request.url.scheme}://{request.headers.get("host")}':raise HTTPException(403,'Недопустимый источник запроса')
+    throttle(request,'demo',60)
+    if request.cookies.get('fsp_session'):current(request)
+    scope=digest(request.cookies.get('fsp_demo_pair',''))
+    now=time.time()
+    with db() as conn:
+        pair=conn.execute('SELECT * FROM demo_pairs WHERE token=?',(scope,)).fetchone()
+        # Three synthetic identities live seven days; reset erases only this browser's data.
+        if pair and (data.reset or pair['expires']<=now or conn.execute('SELECT COUNT(*) FROM users WHERE demo_scope=? AND consent=1',(scope,)).fetchone()[0]!=3):
+            pair=None
+        if not pair:
+            throttle(request,'demo-create',5)
+            obsolete=[row['token'] for row in conn.execute('SELECT token FROM demo_pairs WHERE expires<=? OR token=?',(now,scope)).fetchall()]
+            token=secrets.token_urlsafe(32);scope=digest(token)
+            create_demo(conn,scope,now)
+            for old_scope in obsolete:erase_demo(conn,old_scope)
+            response.set_cookie('fsp_demo_pair',token,max_age=7*86400,httponly=True,samesite='strict',secure=COOKIE_SECURE,path='/')
+        members=conn.execute('SELECT * FROM users WHERE demo_scope=? ORDER BY id',(scope,)).fetchall()
+        selected=members[{'candidate':0,'fresh':1,'employer':2}[data.role]]
+        conn.execute('DELETE FROM sessions WHERE token=?',(digest(request.cookies.get('fsp_session','')),))
+        return session_response(conn,selected,response)
 
 
 def operator_field(name,limit):
@@ -540,7 +618,7 @@ def erase_deactivated_account(data:ErasureData,request:Request,response:Response
 @app.get("/api/references",tags=["Справочники"])
 def references():
     return {"specializations":SPECIALIZATIONS,"grades":GRADES,
-            "skills":["Python","FastAPI","Django","Flask","SQL","PostgreSQL","Docker","JavaScript","TypeScript","React","Vue","CSS","HTML","HTTP"],
+            "skills":SKILLS,
             "demo":DEMO,"fsp_ids":list(REGISTRY) if DEMO else []}
 
 
@@ -583,6 +661,19 @@ def save_profile(data:ProfileData,user=Depends(candidate)):
         conn.execute("UPDATE users SET name=? WHERE id=?",(data.name,user["id"]))
         audit(conn,user["id"],"profile.updated",user["id"])
         return view_candidate(conn,user["id"],own=True)
+
+
+@app.post('/api/candidate/resume/preview',tags=['Кандидат'])
+async def resume_preview(request:Request,user=Depends(candidate)):
+    throttle(request,'resume',5)
+    if request.headers.get('content-type','').split(';')[0]!='application/pdf':raise HTTPException(415,'Загрузите PDF-резюме')
+    content=bytearray()
+    async for chunk in request.stream():
+        content.extend(chunk)
+        if len(content)>MAX_PDF_BYTES:raise HTTPException(413,'PDF должен быть не больше 2 МБ')
+    try:suggestions=await run_in_threadpool(parse_resume,bytes(content))
+    except ValueError as error:raise HTTPException(422,str(error))
+    return {'suggestions':suggestions,'message':'Проверьте распознанные поля. Профиль и категория не изменены; файл не сохраняется.'}
 
 
 @app.post("/api/candidate/consent/revoke",tags=["Кандидат"])
@@ -804,6 +895,8 @@ def edit_need(need_id:int,data:NeedData,user=Depends(employer)):
 
 @app.get('/api/employer/candidates',tags=['Подбор'])
 def find_candidates(need_id:int|None=None,specialization:Literal['backend','frontend']='backend',grade:Literal['Junior','Middle','Senior']='Middle',q:str='',fsp:bool=False,user=Depends(employer)):
+    if len(q)>200:raise HTTPException(422,'Запрос должен быть не длиннее 200 символов')
+    terms=[term.casefold() for term in re.split(r'[\s,;]+',q.strip()) if term]
     with db() as conn:
         if need_id:
             row=conn.execute('SELECT * FROM needs WHERE id=? AND employer=?',(need_id,user['id'])).fetchone()
@@ -811,12 +904,13 @@ def find_candidates(need_id:int|None=None,specialization:Literal['backend','fron
             need=loads(row['data'])
         else:need={'specialization':specialization,'grade':grade,'skills':[],'salary_to':0,'work_format':''}
         result=[]
-        for row in conn.execute('SELECT u.id,p.data,p.updated FROM profiles p JOIN users u ON u.id=p.user_id WHERE u.consent=1 AND u.verified=1'):
+        for row in conn.execute('SELECT u.id,p.data,p.updated FROM profiles p JOIN users u ON u.id=p.user_id WHERE u.consent=1 AND u.verified=1 AND u.demo_scope IS ?',(user['demo_scope'],)):
             p=loads(row['data'])
             if not p.get('published'):continue
             a=achievements(p)
             if fsp and not a:continue
-            if q and q.lower() not in (' '.join(p.get('skills',[]))+' '+p.get('title','')+' '+p.get('about','')).lower():continue
+            searchable=(' '.join(p.get('skills',[]))+' '+p.get('title','')+' '+p.get('about','')).casefold()
+            if not all(term in searchable for term in terms):continue
             cats=categories(conn,row['id'])
             freshness=max(.25,1-(time.time()-row['updated'])/(86400*180))
             match=rank_candidate(p,need,cats,a,freshness)
@@ -911,7 +1005,7 @@ def revoke_contacts(employer_id:int,user=Depends(candidate)):
 @app.get('/api/jobs',tags=['Вакансии'])
 def jobs(user=Depends(current)):
     with db() as conn:
-        return [dict(need_view(r,conn),applied=bool(conn.execute('SELECT id FROM applications WHERE need_id=? AND candidate=?',(r['id'],user['id'])).fetchone())) for r in conn.execute('SELECT * FROM needs WHERE published=1 ORDER BY created DESC')]
+        return [dict(need_view(r,conn),applied=bool(conn.execute('SELECT id FROM applications WHERE need_id=? AND candidate=?',(r['id'],user['id'])).fetchone())) for r in conn.execute('SELECT n.* FROM needs n JOIN users u ON u.id=n.employer WHERE n.published=1 AND u.demo_scope IS ? ORDER BY n.created DESC',(user['demo_scope'],))]
 
 
 class ApplyData(BaseModel):
@@ -924,6 +1018,7 @@ def apply_job(need_id:int,data:ApplyData,user=Depends(candidate)):
     with db() as conn:
         need=conn.execute('SELECT * FROM needs WHERE id=? AND published=1',(need_id,)).fetchone()
         if not need:raise HTTPException(404,'Вакансия не найдена')
+        if not same_demo_scope(conn,user['id'],need['employer']):raise HTTPException(404,'Вакансия не найдена')
         if not profile(conn,user['id']).get('published'):raise HTTPException(409,'Сначала опубликуйте профиль')
         existing=conn.execute('SELECT id FROM applications WHERE need_id=? AND candidate=?',(need_id,user['id'])).fetchone()
         if existing:return {'id':existing['id']}
@@ -984,6 +1079,7 @@ def list_tasks(user=Depends(current)):
         if cats and (not last or last['created']<time.time()-7*86400):
             choices=[]
             for r in conn.execute('SELECT t.* FROM tasks t JOIN users u ON u.id=t.employer WHERE u.consent=1 AND t.id NOT IN (SELECT task FROM assignments WHERE candidate=?)',(user['id'],)):
+                if not same_demo_scope(conn,user['id'],r['employer']):continue
                 t=loads(r['data']);cat=next((c for c in cats if c['specialization']==t['specialization'] and c['grade']==t['grade']),None)
                 if cat:choices.append((r,t,cat))
             if choices:
@@ -1122,3 +1218,4 @@ def frontend_page(page: str):
     public_pages = {'terms', 'privacy', 'cookies', 'help', 'accessibility', 'login', 'register', 'home','refunds','consent','operator','deletion','licenses'}
     status = 200 if page.strip('/') in public_pages else 404
     return FileResponse(ROOT/'static/index.html', status_code=status, headers={'Cache-Control': 'no-cache'})
+

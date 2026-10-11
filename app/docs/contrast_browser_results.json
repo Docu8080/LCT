@@ -1,0 +1,134 @@
+{
+  "base": "http://127.0.0.1:8080",
+  "viewport": "1440×1000",
+  "limitations": "Solid ancestor backgrounds only. Skipped text and overlap need manual review.",
+  "pages": {
+    "public/home": {
+      "checked": 96,
+      "failures": [],
+      "skipped": []
+    },
+    "public/login": {
+      "checked": 62,
+      "failures": [],
+      "skipped": []
+    },
+    "public/register": {
+      "checked": 70,
+      "failures": [],
+      "skipped": []
+    },
+    "public/privacy": {
+      "checked": 79,
+      "failures": [],
+      "skipped": []
+    },
+    "public/terms": {
+      "checked": 79,
+      "failures": [],
+      "skipped": []
+    },
+    "public/consent": {
+      "checked": 67,
+      "failures": [],
+      "skipped": []
+    },
+    "public/help": {
+      "checked": 68,
+      "failures": [],
+      "skipped": []
+    },
+    "public/accessibility": {
+      "checked": 59,
+      "failures": [],
+      "skipped": []
+    },
+    "public/not-found": {
+      "checked": 38,
+      "failures": [],
+      "skipped": []
+    },
+    "candidate/overview": {
+      "checked": 89,
+      "failures": [],
+      "skipped": []
+    },
+    "candidate/profile": {
+      "checked": 88,
+      "failures": [],
+      "skipped": []
+    },
+    "candidate/tests": {
+      "checked": 61,
+      "failures": [],
+      "skipped": [
+        "Junior",
+        "Базовые навыки",
+        "Senior",
+        "Сложные задачи"
+      ]
+    },
+    "candidate/invitations": {
+      "checked": 55,
+      "failures": [],
+      "skipped": []
+    },
+    "candidate/tasks": {
+      "checked": 53,
+      "failures": [],
+      "skipped": []
+    },
+    "candidate/jobs": {
+      "checked": 53,
+      "failures": [],
+      "skipped": []
+    },
+    "candidate/settings": {
+      "checked": 80,
+      "failures": [],
+      "skipped": []
+    },
+    "employer/matching": {
+      "checked": 89,
+      "failures": [],
+      "skipped": []
+    },
+    "employer/needs": {
+      "checked": 53,
+      "failures": [],
+      "skipped": []
+    },
+    "employer/invitations": {
+      "checked": 53,
+      "failures": [],
+      "skipped": []
+    },
+    "employer/tasks": {
+      "checked": 51,
+      "failures": [],
+      "skipped": []
+    },
+    "employer/company": {
+      "checked": 53,
+      "failures": [],
+      "skipped": []
+    },
+    "employer/settings": {
+      "checked": 67,
+      "failures": [],
+      "skipped": []
+    },
+    "employer/matching-mobile": {
+      "checked": 53,
+      "failures": [],
+      "skipped": []
+    }
+  },
+  "workflow_checks": [
+    "Demo button login",
+    "PDF upload and editable preview",
+    "Applying PDF fields to the form",
+    "Role switch",
+    "Scenario reset"
+  ]
+}

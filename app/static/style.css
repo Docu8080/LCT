@@ -34,3 +34,6 @@ input,select,textarea{border-color:var(--control-border)}input::placeholder,text
 .privacyrow{flex-wrap:wrap}.privacyrow>div{flex:1;min-width:min(100%,180px)}.privacyrow button{max-width:100%;white-space:normal}
 
 #toast{bottom:calc(var(--cookie-notice-height) + 30px)}
+.sidebar .brand-dot{color:#7ea0ff}.breadcrumb span,.band-separator{color:var(--muted)}
+@media(max-width:760px){.topbar:has(.demobadge){height:auto;min-height:76px;flex-wrap:wrap;gap:10px}.topright:has(.demobadge){flex-wrap:wrap;gap:10px}}
+
