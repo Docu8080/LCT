@@ -86,6 +86,33 @@ export async function checkIntegration({ evaluate, visit, send }) {
     );
     if (role === 'candidate') {
       assert.equal((await read('/candidate/profile')).published, false);
+      await visit('profile');
+      await submit('fsp-link', { fsp_id: 'FSP-DEMO-001' });
+      await wait(
+        `!!document.querySelector('#modal[open] form[data-form="fsp-confirm"]')`,
+        'FSP ownership form'
+      );
+      const fspCode = await evaluate(
+        `document.querySelector('#modal .demo-code strong').textContent`
+      );
+      await submit('fsp-confirm', { code: fspCode === '111111' ? '222222' : '111111' });
+      await wait(
+        `document.querySelector('#modal .formerror')?.textContent.includes('Код неверный')`,
+        'Wrong FSP code rejected'
+      );
+      await submit('fsp-confirm', { code: fspCode });
+      await wait(
+        `!document.querySelector('#modal[open]')&&!document.querySelector('.loading-skeleton')`,
+        'FSP ownership confirmation'
+      );
+      assert.equal((await read('/candidate/profile')).fsp_id, 'FSP-DEMO-001');
+      await click('[data-action="unlink-fsp"]');
+      await wait(
+        `!!document.querySelector('form[data-form="fsp-link"]')&&!document.querySelector('.loading-skeleton')`,
+        'FSP unlink'
+      );
+      assert.equal((await read('/candidate/profile')).fsp_id, null);
+      checks.push('FSP demo link, rejected code, corrected confirmation and unlink');
       await visit('tests');
       await submit('start-test', { specialization: 'backend', grade: 'Junior' });
       await wait(`!!document.querySelector('[data-answer]')`, 'Test start');
@@ -212,7 +239,16 @@ export async function checkIntegration({ evaluate, visit, send }) {
     description: 'Разработка API и проверка данных на Python и SQL.',
     skills: 'Python, SQL',
     published: true,
+    salary_from: 200000,
+    salary_to: 100000,
   });
+  await wait(
+    `document.querySelector('#modal .formerror')?.textContent.includes('Верхняя граница зарплаты меньше нижней')`,
+    'Invalid salary rejected'
+  );
+  assert.ok(!(await read('/employer/needs')).some((n) => n.title === 'Интеграционная вакансия'));
+  await submit('need', { salary_to: 260000 });
+  checks.push('Server validation appears in the form and corrected salary saves once');
   await wait(
     `!document.querySelector('#modal[open]')&&!document.querySelector('.loading-skeleton')`,
     'Need creation'
