@@ -3,3 +3,5 @@ uvicorn==0.34.2
 pydantic==2.11.4
 reportlab==4.4.0
 httpx==0.28.1
+pypdf==6.1.1
+

@@ -200,6 +200,45 @@
         }
       }
     },
+    "/api/auth/demo": {
+      "post": {
+        "tags": [
+          "Авторизация"
+        ],
+        "summary": "Browser Demo",
+        "operationId": "browser_demo_api_auth_demo_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DemoData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/legal/config": {
       "get": {
         "tags": [
@@ -404,6 +443,25 @@
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/resume/preview": {
+      "post": {
+        "tags": [
+          "Кандидат"
+        ],
+        "summary": "Resume Preview",
+        "operationId": "resume_preview_api_candidate_resume_preview_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
               }
             }
           }
@@ -1672,6 +1730,28 @@
           "password"
         ],
         "title": "DeleteAccountData"
+      },
+      "DemoData": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "candidate",
+              "fresh",
+              "employer"
+            ],
+            "title": "Role",
+            "default": "candidate"
+          },
+          "reset": {
+            "type": "boolean",
+            "title": "Reset",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "DemoData"
       },
       "ErasureData": {
         "properties": {
