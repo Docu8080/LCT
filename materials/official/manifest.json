@@ -1,0 +1,16 @@
+{
+  "source": "Архив ФСП.zip, предоставленный пользователем 10 октября 2026 года",
+  "files": [
+    {
+      "path": "ФСП/ЛЦТ_2026_Шаблон презентации ФСП.pptx",
+      "bytes": 34461021,
+      "sha256": "d2506c0aeb4fca12b6febb242e7d4e7fafc6c4c50434d3b671fc9d7251eb7345"
+    },
+    {
+      "path": "ФСП/ФСП спец. трек ТЗ.pdf",
+      "bytes": 551797,
+      "sha256": "a39ec8ccb300f4d06c7408b7ab13eff6f71610e86cc0e6d6650bc664f656eba1"
+    }
+  ],
+  "path_base": "materials/official"
+}

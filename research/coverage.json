@@ -1,0 +1,259 @@
+{
+  "project": "fsp-repository-research-2026-10-08",
+  "signal": "best_effort",
+  "indexed_at": "2026-10-08T15:59:14Z",
+  "metadata": {
+    "generation": "2026-10-08T15:59:14Z",
+    "index_mode": "fast",
+    "recorded_at": "2026-10-08T15:59:14Z",
+    "recording_status": "complete",
+    "ignored_files_stored": 93,
+    "ignored_files_total": 93,
+    "hash_records_complete": true,
+    "coverage_version": 3,
+    "generation_matches": true
+  },
+  "paths": [
+    {
+      "requested_path": "Daniel123912__invite-match/backend/app/core/privacy.py",
+      "path": "Daniel123912__invite-match/backend/app/core/privacy.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "Daniel123912__invite-match/backend/app/services/match_service.py",
+      "path": "Daniel123912__invite-match/backend/app/services/match_service.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "Daniel123912__invite-match/backend/app/services/test_service.py",
+      "path": "Daniel123912__invite-match/backend/app/services/test_service.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "Daniel123912__invite-match/backend/tests/test_flow.py",
+      "path": "Daniel123912__invite-match/backend/tests/test_flow.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/db/session.py",
+      "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/db/session.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/passport.py",
+      "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/passport.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/tasks.py",
+      "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/tasks.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/migrations/rls.py",
+      "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/migrations/rls.py",
+      "status": "excluded",
+      "freshness": "not_tracked",
+      "recommended_action": "read_source_and_reindex",
+      "coverage": [
+        {
+          "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/migrations",
+          "kind": "not_indexed_dir",
+          "detail": "excluded subtree",
+          "match": "ancestor"
+        }
+      ]
+    },
+    {
+      "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/tests/test_passport.py",
+      "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/tests/test_passport.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/tests/test_rls_postgres.py",
+      "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/tests/test_rls_postgres.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/db.js",
+      "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/db.js",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/index.js",
+      "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/index.js",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/matching/matching.router.js",
+      "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/matching/matching.router.js",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/test/test.service.js",
+      "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/test/test.service.js",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/matching/ranking.py",
+      "path": "SergeLyamin__fsp-talent/backend/app/modules/matching/ranking.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/testing/calibration.py",
+      "path": "SergeLyamin__fsp-talent/backend/app/modules/testing/calibration.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/testing/engine.py",
+      "path": "SergeLyamin__fsp-talent/backend/app/modules/testing/engine.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/testing/irt.py",
+      "path": "SergeLyamin__fsp-talent/backend/app/modules/testing/irt.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/testing/service.py",
+      "path": "SergeLyamin__fsp-talent/backend/app/modules/testing/service.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "Slavik993__Agregator-IT-vakansiy/server/matching.js",
+      "path": "Slavik993__Agregator-IT-vakansiy/server/matching.js",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "Slavik993__Agregator-IT-vakansiy/server/services/pdf.js",
+      "path": "Slavik993__Agregator-IT-vakansiy/server/services/pdf.js",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "Slavik993__Agregator-IT-vakansiy/server/visability.js",
+      "path": "Slavik993__Agregator-IT-vakansiy/server/visability.js",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "fazzyfan__FSP_26/backend/app/api/v1/invitations.py",
+      "path": "fazzyfan__FSP_26/backend/app/api/v1/invitations.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "fazzyfan__FSP_26/backend/app/services/assessment.py",
+      "path": "fazzyfan__FSP_26/backend/app/services/assessment.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "fazzyfan__FSP_26/backend/app/services/contacts.py",
+      "path": "fazzyfan__FSP_26/backend/app/services/contacts.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "fazzyfan__FSP_26/backend/app/services/matching.py",
+      "path": "fazzyfan__FSP_26/backend/app/services/matching.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "miliantr__fsp-talent/backend/app/services/matching/engine.py",
+      "path": "miliantr__fsp-talent/backend/app/services/matching/engine.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "miliantr__fsp-talent/backend/app/services/tasks_service.py",
+      "path": "miliantr__fsp-talent/backend/app/services/tasks_service.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    },
+    {
+      "requested_path": "miliantr__fsp-talent/backend/app/services/testing/irt.py",
+      "path": "miliantr__fsp-talent/backend/app/services/testing/irt.py",
+      "status": "no_recorded_issue",
+      "freshness": "metadata_match",
+      "recommended_action": "use_graph_with_best_effort_caveat",
+      "coverage": []
+    }
+  ],
+  "scopes": [],
+  "caveat": "Best-effort signal only. No recorded issue does not prove graph or source completeness; read flagged source and qualify claims when metadata is changed or unavailable."
+}

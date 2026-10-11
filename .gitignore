@@ -1,0 +1,34 @@
+# Local credentials and access notes
+.env
+.env.*
+!.env.example
+/FSP_MATERIALS_ACCESS.txt
+*.pem
+*.key
+
+# Runtime environments, data, caches and local tools
+.venv/
+.venv-runtime/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+node_modules/
+/app/data/
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+*.log
+.DS_Store
+.idea/
+.vscode/
+.codex/
+.agents/
+
+# Local research snapshots and old distribution archives
+/FSP_*.zip
+/research/archives/
+/research/sources/
+/research/skill-audits/

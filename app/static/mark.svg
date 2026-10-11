@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Таланты ФСП</title>
+  <defs>
+    <linearGradient id="cobalt" x1="80" y1="32" x2="432" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3270f9"/>
+      <stop offset=".52" stop-color="#2457e7"/>
+      <stop offset="1" stop-color="#1c43ca"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#cobalt)"/>
+  <path d="M102 144H306L284 200H232V368H174V200H102Z" fill="#fff"/>
+  <path d="M344 144H404L316 368H256Z" fill="#c9dcff"/>
+</svg>

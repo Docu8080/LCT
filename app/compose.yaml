@@ -1,0 +1,17 @@
+services:
+  talent:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      FSP_DEMO: "1"
+      FSP_COOKIE_SECURE: "0"
+    volumes:
+      - talent-data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/api/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+volumes:
+  talent-data:

@@ -1,0 +1,742 @@
+{
+  "tier": "Verify / task-directed static review",
+  "project": "fsp-repository-research-2026-10-08",
+  "index": {
+    "project": "fsp-repository-research-2026-10-08",
+    "excluded": {
+      "dirs": [
+        "miliantr__fsp-talent/docs",
+        "miliantr__fsp-talent/scripts",
+        "miliantr__fsp-talent/backend/scripts",
+        "miliantr__fsp-talent/backend/app/i18n",
+        "miliantr__fsp-talent/frontend/public"
+      ],
+      "count": 22,
+      "truncated": true
+    },
+    "not_indexed_files_count": 93,
+    "not_indexed_files": {
+      "files": [
+        {
+          "path": "miliantr__fsp-talent/backend/app/api/routes/mock_fsp.py",
+          "reason": "fast-pattern"
+        },
+        {
+          "path": "miliantr__fsp-talent/frontend/package-lock.json",
+          "reason": "skip-list"
+        },
+        {
+          "path": "miliantr__fsp-talent/frontend/src/pages/pages.test.tsx",
+          "reason": "fast-pattern"
+        },
+        {
+          "path": "miliantr__fsp-talent/frontend/src/pages/tasks.test.tsx",
+          "reason": "fast-pattern"
+        },
+        {
+          "path": "miliantr__fsp-talent/frontend/src/api/schema.d.ts",
+          "reason": "fast-pattern"
+        }
+      ],
+      "count": 93,
+      "truncated": true,
+      "note": "Excluded by design (gitignore/.cbmignore/skip-lists); examples only — full list in 'logfile'."
+    },
+    "skipped_count": 0,
+    "logfile": "local-only/codebase-memory-logs/fsp-repository-research-2026-10-08-1791475154.log",
+    "parse_partial_count": 10,
+    "parse_partial": {
+      "files": [
+        {
+          "path": "PRANGATE__hhhakaton_programing_sport_zzz/deploy.ps1",
+          "error_ranges": "126-126"
+        },
+        {
+          "path": "PRANGATE__hhhakaton_programing_sport_zzz/deploy_up.ps1",
+          "error_ranges": "93-93"
+        },
+        {
+          "path": "PRANGATE__hhhakaton_programing_sport_zzz/nginx/default.conf",
+          "error_ranges": "1-158"
+        },
+        {
+          "path": "SergeLyamin__fsp-talent/backend/pytest.ini",
+          "error_ranges": "6-6"
+        },
+        {
+          "path": "SergeLyamin__fsp-talent/frontend/nginx.conf",
+          "error_ranges": "1-27"
+        }
+      ],
+      "count": 10,
+      "truncated": true,
+      "note": "Indexed, but constructs in these line ranges may be missing (best-effort signal); examples only — full list via index_status or 'logfile'."
+    },
+    "nodes": 9898,
+    "edges": 48264,
+    "expected_nodes": 9898,
+    "expected_edges": 48264,
+    "adr_present": false,
+    "adr_hint": "Project indexed. Consider creating an Architecture Decision Record: explore the codebase with get_architecture(aspects=['all']), then use manage_adr(mode='update') to persist architectural insights across sessions.",
+    "artifact_present": false,
+    "status": "indexed"
+  },
+  "coverage": {
+    "project": "fsp-repository-research-2026-10-08",
+    "signal": "best_effort",
+    "indexed_at": "2026-10-08T15:59:14Z",
+    "metadata": {
+      "generation": "2026-10-08T15:59:14Z",
+      "index_mode": "fast",
+      "recorded_at": "2026-10-08T15:59:14Z",
+      "recording_status": "complete",
+      "ignored_files_stored": 93,
+      "ignored_files_total": 93,
+      "hash_records_complete": true,
+      "coverage_version": 3,
+      "generation_matches": true
+    },
+    "paths": [
+      {
+        "requested_path": "miliantr__fsp-talent/backend/app/services/testing/irt.py",
+        "path": "miliantr__fsp-talent/backend/app/services/testing/irt.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "miliantr__fsp-talent/backend/app/services/tasks_service.py",
+        "path": "miliantr__fsp-talent/backend/app/services/tasks_service.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/passport.py",
+        "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/passport.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/tasks.py",
+        "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/tasks.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/db/session.py",
+        "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/db/session.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "fazzyfan__FSP_26/backend/app/services/contacts.py",
+        "path": "fazzyfan__FSP_26/backend/app/services/contacts.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "fazzyfan__FSP_26/backend/app/services/assessment.py",
+        "path": "fazzyfan__FSP_26/backend/app/services/assessment.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "Daniel123912__invite-match/backend/app/services/match_service.py",
+        "path": "Daniel123912__invite-match/backend/app/services/match_service.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "Daniel123912__invite-match/backend/app/core/privacy.py",
+        "path": "Daniel123912__invite-match/backend/app/core/privacy.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "Slavik993__Agregator-IT-vakansiy/server/visability.js",
+        "path": "Slavik993__Agregator-IT-vakansiy/server/visability.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "Slavik993__Agregator-IT-vakansiy/server/matching.js",
+        "path": "Slavik993__Agregator-IT-vakansiy/server/matching.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/testing/engine.py",
+        "path": "SergeLyamin__fsp-talent/backend/app/modules/testing/engine.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/test/test.service.js",
+        "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/test/test.service.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "miliantr__fsp-talent/backend/app/services/matching/engine.py",
+        "path": "miliantr__fsp-talent/backend/app/services/matching/engine.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "miliantr__fsp-talent/backend/tests/test_categories.py",
+        "path": "miliantr__fsp-talent/backend/tests/test_categories.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/tests/test_rls_postgres.py",
+        "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/tests/test_rls_postgres.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/db.js",
+        "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/db.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/index.js",
+        "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/index.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/matching/matching.router.js",
+        "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/matching/matching.router.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/matching/ranking.py",
+        "path": "SergeLyamin__fsp-talent/backend/app/modules/matching/ranking.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/testing/irt.py",
+        "path": "SergeLyamin__fsp-talent/backend/app/modules/testing/irt.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      }
+    ],
+    "scopes": [
+      {
+        "requested_scope": "PRANGATE__hhhakaton_programing_sport_zzz/server",
+        "scope": "PRANGATE__hhhakaton_programing_sport_zzz/server",
+        "total": 0,
+        "has_more": false,
+        "entries": [],
+        "status": "no_recorded_issue"
+      }
+    ],
+    "caveat": "Best-effort signal only. No recorded issue does not prove graph or source completeness; read flagged source and qualify claims when metadata is changed or unavailable."
+  },
+  "snippets": [
+    {
+      "symbol": "miliantr__fsp-talent.backend.app.services.testing.irt.eap",
+      "name": "eap",
+      "qualified_name": "fsp-repository-research-2026-10-08.miliantr__fsp-talent.backend.app.services.testing.irt.eap",
+      "label": "Function",
+      "file_path": "research/sources/miliantr__fsp-talent/backend/app/services/testing/irt.py",
+      "start_line": 38,
+      "end_line": 58,
+      "source": "def eap(responses: list[tuple[float, float, float, bool]], prior_mean: float = 0.0,\n        prior_sd: float = 1.25) -> Posterior:\n    \"\"\"Expected-a-posteriori estimate of θ.\n\n    responses: (a, b, c, is_correct) per administered item. Unanswered items must be passed as\n    incorrect by the caller. EAP is finite even for all-correct/all-wrong patterns (unlike MLE).\n    \"\"\"\n    log_post = []\n    for t in GRID:\n        lp = -0.5 * ((t - prior_mean) / prior_sd) ** 2\n        for a, b, c, u in responses:\n            p = min(max(p_correct(t, a, b, c), 1e-9), 1 - 1e-9)\n            lp += math.log(p if u else 1 - p)\n        log_post.append(lp)\n    m = max(log_post)\n    w = [math.exp(x - m) for x in log_post]\n    s = sum(w)\n    w = [x / s for x in w]\n    mean = sum(t * x for t, x in zip(GRID, w, strict=True))\n    var = sum((t - mean) ** 2 * x for t, x in zip(GRID, w, strict=True))\n    return Posterior(theta=mean, se=math.sqrt(var), weights=w)\n",
+      "callers": 0,
+      "callees": 4
+    },
+    {
+      "symbol": "miliantr__fsp-talent.backend.app.services.tasks_service.offer_due",
+      "name": "offer_due",
+      "qualified_name": "fsp-repository-research-2026-10-08.miliantr__fsp-talent.backend.app.services.tasks_service.offer_due",
+      "label": "Function",
+      "file_path": "research/sources/miliantr__fsp-talent/backend/app/services/tasks_service.py",
+      "start_line": 199,
+      "end_line": 237,
+      "source": "def offer_due(db: Session, c: CandidateProfile, now: datetime | None = None) -> TaskAssignment | None:\n    \"\"\"Offers the next task to the candidate if one is due (lazily on reading the tasks and by the\n    periodic job). Returns the new assignment or None.\"\"\"\n    now = now or utcnow()\n    expire_overdue(db, c, now)\n    if not c.categories or not c.user.is_active:\n        db.commit()\n        return None\n    open_offer = db.scalar(select(TaskAssignment.id).where(TaskAssignment.candidate_id == c.id,\n                                                           TaskAssignment.status == AssignmentStatus.OFFERED))\n    due = next_offer_at(db, c)\n    if open_offer or (due and now < due):\n        db.commit()\n        return None\n    seen = set(db.scalars(select(TaskAssignment.task_id).where(TaskAssignment.candidate_id == c.id)))\n    seen |= set(db.scalars(select(TaskSubmission.task_id).where(TaskSubmission.candidate_id == c.id)))\n    specs = [k.specialization_id for k in c.categories]\n    best: tuple[float, ShortTask, list[dict]] | None = None\n    for task in db.scalars(select(ShortTask).where(ShortTask.is_active.is_(True),\n                                                   ShortTask.audience == TaskAudience.TARGETED,\n                                                   ShortTask.specialization_id.in_(specs))):\n        if task.id in seen:\n            continue\n        offers = _offers_count(db, task.id)\n        if offers >= task.max_offers:\n            continue\n        scored = _candidate_score(db, c, task, now, offers)\n        if scored and (best is None or scored[0] > best[0]):\n            best = (scored[0], task, scored[1])\n    if best is None:\n        db.commit()\n        return None\n    _, task, reasons = best\n    a = TaskAssignment(task_id=task.id, candidate_id=c.id, source=\"system\", reason=reasons,\n                       status=AssignmentStatus.OFFERED, offered_at=now,\n                       due_at=now + timedelta(days=task.time_limit_days))\n    db.add(a)\n    db.commit()\n    return a\n",
+      "callers": 5,
+      "callees": 9
+    },
+    {
+      "symbol": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-.backend.app.services.passport.verify_passport",
+      "name": "verify_passport",
+      "qualified_name": "fsp-repository-research-2026-10-08.LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-.backend.app.services.passport.verify_passport",
+      "label": "Function",
+      "file_path": "research/sources/LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/passport.py",
+      "start_line": 154,
+      "end_line": 175,
+      "source": "async def verify_passport(\n    session: AsyncSession, signer: PassportSigner, passport_id: uuid.UUID\n) -> PassportVerifyOut:\n    \"\"\"Публичная проверка по id. Читает в контексте system (RLS отдаёт паспорта только\n    владельцам); по отозванному паспорту возвращается только факт отзыва, без данных.\"\"\"\n    await set_rls_context(session, None, SYSTEM_ROLE)\n    passport = await PassportRepository(session).get(passport_id)\n    if passport is None:\n        raise NotFoundError(\"паспорт не найден\")\n    status = _check(passport, signer)\n    hidden = status == \"revoked\"\n    return PassportVerifyOut(\n        id=passport.id,\n        issued_at=passport.created_at,\n        revoked_at=passport.revoked_at,\n        status=status,\n        valid=status == \"valid\",\n        payload=None if hidden else passport.payload,\n        signature=None if hidden else passport.signature,\n        key_id=None if hidden else passport.key_id,\n        public_key=signer.public_key_b64,\n    )\n",
+      "callers": 1,
+      "callees": 6
+    },
+    {
+      "symbol": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-.backend.app.services.tasks._weekly_pick",
+      "name": "_weekly_pick",
+      "qualified_name": "fsp-repository-research-2026-10-08.LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-.backend.app.services.tasks._weekly_pick",
+      "label": "Function",
+      "file_path": "research/sources/LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/tasks.py",
+      "start_line": 225,
+      "end_line": 235,
+      "source": "def _weekly_pick(anon_id: uuid.UUID, offered: list[EmployerTask]) -> EmployerTask:\n    \"\"\"Задача недели: детерминированный выбор по анонимному id и номеру недели. Задачи,\n    опубликованные в течение недели, участвуют со следующей — выбор не меняется посреди недели.\"\"\"\n    now = datetime.now(UTC)\n    week_start = (now - timedelta(days=now.weekday())).replace(\n        hour=0, minute=0, second=0, microsecond=0\n    )\n    settled = [t for t in offered if as_aware(t.created_at) < week_start] or offered\n    year, week, _ = now.isocalendar()\n    digest = hashlib.sha256(f\"{anon_id}:{year}-{week}\".encode()).digest()\n    return settled[int.from_bytes(digest[:4]) % len(settled)]\n",
+      "callers": 2,
+      "callees": 4
+    },
+    {
+      "symbol": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-.backend.app.db.session.set_rls_context",
+      "name": "set_rls_context",
+      "qualified_name": "fsp-repository-research-2026-10-08.LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-.backend.app.db.session.set_rls_context",
+      "label": "Function",
+      "file_path": "research/sources/LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/db/session.py",
+      "start_line": 63,
+      "end_line": 67,
+      "source": "async def set_rls_context(session: AsyncSession, user_id: uuid.UUID | None, role: str) -> None:\n    \"\"\"Задать контекст RLS: сразу для текущей транзакции и для всех следующих транзакций сессии.\"\"\"\n    session.sync_session.info[RLS_KEY] = (user_id, role)\n    if _is_postgres(session.sync_session):\n        await session.execute(_SET_RLS_SQL, _rls_params((user_id, role)))\n",
+      "callers": 33,
+      "callees": 2
+    },
+    {
+      "symbol": "fazzyfan__FSP_26.backend.app.services.contacts.contacts_denied_problem",
+      "name": "contacts_denied_problem",
+      "qualified_name": "fsp-repository-research-2026-10-08.fazzyfan__FSP_26.backend.app.services.contacts.contacts_denied_problem",
+      "label": "Function",
+      "file_path": "research/sources/fazzyfan__FSP_26/backend/app/services/contacts.py",
+      "start_line": 20,
+      "end_line": 49,
+      "source": "def contacts_denied_problem(inv: Invitation) -> errors.Problem | None:\n    \"\"\"Возвращает Problem, если доступ к контактам закрыт, иначе None.\"\"\"\n    # Отзыв обработки данных деактивирует аккаунт: любые персональные данные\n    # (включая контакты) перестают выдаваться работодателю немедленно (FR-04).\n    account = getattr(getattr(inv, \"candidate\", None), \"account\", None)\n    if account is not None and account.status != AccountStatus.ACTIVE:\n        return errors.Problem(\n            409, errors.INVALID_STATE, errors.E12_STATE, \"Доступ к контактам закрыт\",\n            detail=\"Кандидат отозвал обработку данных; контакты недоступны.\",\n            recovery=\"none\",\n        )\n    if inv.status != InvitationStatus.ACCEPTED:\n        return errors.Problem(\n            409, errors.INVALID_STATE, errors.E12_STATE, \"Контакты пока закрыты\",\n            detail=\"Контакты кандидата открываются только после принятия приглашения.\",\n            recovery=\"none\",\n        )\n    if inv.contacts_consented_at is None:\n        return errors.Problem(\n            409, errors.INVALID_STATE, errors.E12_STATE, \"Контакты пока закрыты\",\n            detail=\"Кандидат ещё не дал согласие на открытие контактов.\",\n            recovery=\"none\",\n        )\n    if inv.contacts_revoked_at is not None:\n        return errors.Problem(\n            409, errors.INVALID_STATE, errors.E12_STATE, \"Доступ к контактам отозван\",\n            detail=\"Кандидат отозвал доступ к контактам этой компании.\",\n            recovery=\"none\",\n        )\n    return None\n",
+      "callers": 1,
+      "callees": 1
+    },
+    {
+      "symbol": "fazzyfan__FSP_26.backend.app.services.assessment.save_answers",
+      "name": "save_answers",
+      "qualified_name": "fsp-repository-research-2026-10-08.fazzyfan__FSP_26.backend.app.services.assessment.save_answers",
+      "label": "Function",
+      "file_path": "research/sources/fazzyfan__FSP_26/backend/app/services/assessment.py",
+      "start_line": 252,
+      "end_line": 305,
+      "source": "async def save_answers(\n    db: AsyncSession,\n    attempt: TestAttempt,\n    answers: list[tuple[uuid.UUID, uuid.UUID]],\n    valid_question_ids: set[uuid.UUID],\n    expected_version: int | None = None,\n) -> None:\n    \"\"\"Upsert ответов активной попытки. Завершённые/просроченные попытки закрыты.\n\n    Версия ответов (NFR-06): клиент передаёт answers_version, с которой он\n    работал. Если на сервере уже новее — запрос отклоняется (409), чтобы\n    запоздавшее автосохранение не затерло свежий выбор.\n    \"\"\"\n    if attempt.status != TestAttemptStatus.IN_PROGRESS:\n        raise errors.Problem(\n            409, errors.INVALID_STATE, errors.E12_STATE, \"Попытка уже завершена\",\n            detail=\"Ответы можно сохранять только в активной попытке.\",\n            recovery=\"none\",\n        )\n    if mark_expired(attempt):\n        await db.commit()\n        raise errors.Problem(\n            409, errors.INVALID_STATE, errors.E13_TIME, \"Время попытки истекло\",\n            detail=\"Серверный таймер попытки истёк. Начните новую попытку.\",\n            recovery=\"retry\",\n        )\n    if expected_version is not None and expected_version != attempt.answers_version:\n        raise errors.Problem(\n            409, errors.CONFLICT, errors.E11_CONCURRENCY, \"Ответы устарели\",\n            detail=(\n                f\"Клиент работал с версией {expected_version}, \"\n                f\"на сервере уже {attempt.answers_version}. Обновите состояние попытки.\"\n            ),\n            recovery=\"refresh\", extra={\"current_version\": attempt.answers_version},\n        )\n\n    existing = await attempt_answers_map(db, attempt)\n    for qid, opt_id in answers:\n        if qid not in valid_question_ids:\n            raise errors.Problem(\n                422, errors.VALIDATION_FAILED, errors.E04_REFERENCE, \"Неизвестный вопрос\",\n                errors=[{\"field\": \"answers\", \"code\": \"REFERENCE_INVALID\", \"error_class\": \"E04\",\n                         \"message\": \"Вопрос не входит в тест этой категории\"}],\n                recovery=\"correct_input\",\n            )\n        answer = existing.get(qid)\n        if answer is None:\n            answer = TestAttemptAnswer(attempt_id=attempt.id, question_id=qid, option_id=opt_id)\n            db.add(answer)\n            existing[qid] = answer\n        else:\n            answer.option_id = opt_id\n    attempt.answers_version += 1\n    await db.commit()\n",
+      "callers": 1,
+      "callees": 6
+    },
+    {
+      "symbol": "Daniel123912__invite-match.backend.app.services.match_service.rank_score",
+      "name": "rank_score",
+      "qualified_name": "fsp-repository-research-2026-10-08.Daniel123912__invite-match.backend.app.services.match_service.rank_score",
+      "label": "Function",
+      "file_path": "research/sources/Daniel123912__invite-match/backend/app/services/match_service.py",
+      "start_line": 8,
+      "end_line": 13,
+      "source": "def rank_score(candidate: Candidate) -> float:\n    test = candidate.test_score or 0.0\n    fsp = candidate.fsp_score or 0.0\n    # Normalize fsp to 0-100 scale (stub achievements give points up to ~100)\n    fsp_norm = min(fsp, 100.0)\n    return round(test * 0.7 + fsp_norm * 0.3, 2)\n",
+      "callers": 1,
+      "callees": 0
+    },
+    {
+      "symbol": "Daniel123912__invite-match.backend.app.core.privacy.can_reveal_contacts",
+      "name": "can_reveal_contacts",
+      "qualified_name": "fsp-repository-research-2026-10-08.Daniel123912__invite-match.backend.app.core.privacy.can_reveal_contacts",
+      "label": "Function",
+      "file_path": "research/sources/Daniel123912__invite-match/backend/app/core/privacy.py",
+      "start_line": 34,
+      "end_line": 42,
+      "source": "def can_reveal_contacts(invitation: Invitation, candidate: Candidate | None) -> bool:\n    \"\"\"Контакты только после accept, при живом согласии и без отзыва доступа.\"\"\"\n    if invitation.status != InvitationStatus.ACCEPTED:\n        return False\n    if invitation.contacts_revoked:\n        return False\n    if not candidate or not candidate.consent_152fz:\n        return False\n    return True\n",
+      "callers": 1,
+      "callees": 0
+    },
+    {
+      "symbol": "Slavik993__Agregator-IT-vakansiy.server.visability.canViewContacts",
+      "name": "canViewContacts",
+      "qualified_name": "fsp-repository-research-2026-10-08.Slavik993__Agregator-IT-vakansiy.server.visability.canViewContacts",
+      "label": "Function",
+      "file_path": "research/sources/Slavik993__Agregator-IT-vakansiy/server/visability.js",
+      "start_line": 19,
+      "end_line": 51,
+      "source": "function canViewContacts(employerId, candidateId, db) {\n  // Контакты открываются, если:\n  //  1) кандидат сам откликнулся на вакансию этого работодателя;\n  //  2) кандидат принял оффер от этого работодателя;\n  //  3) кандидат выставил privacy_show_contacts = 1 (явное согласие).\n  const cand = db.prepare('SELECT id, privacy_show_contacts FROM candidates WHERE id = ?').get(candidateId);\n  if (!cand) return false;\n  if (cand.privacy_show_contacts) return true;\n\n  const company = db.prepare('SELECT id FROM employer_companies WHERE id = ?').get(employerId);\n  if (!company) return false;\n\n  const acceptedOffer = db.prepare(\n    `SELECT 1 FROM offers o\n     JOIN vacancies v ON v.id = o.vacancy_id\n     WHERE o.candidate_id = $candidateId\n       AND v.employer_id = $employerId\n       AND o.status = 'accepted'\n     LIMIT 1`\n  ).get({ candidateId, employerId });\n  if (acceptedOffer) return true;\n\n  const application = db.prepare(\n    `SELECT 1 FROM applications a\n     JOIN vacancies v ON v.id = a.vacancy_id\n     WHERE a.candidate_id = $candidateId\n       AND v.employer_id = $employerId\n     LIMIT 1`\n  ).get({ candidateId, employerId });\n  if (application) return true;\n\n  return false;\n}\n",
+      "callers": 1,
+      "callees": 0
+    },
+    {
+      "symbol": "Slavik993__Agregator-IT-vakansiy.server.matching.categorizeCandidate",
+      "name": "categorizeCandidate",
+      "qualified_name": "fsp-repository-research-2026-10-08.Slavik993__Agregator-IT-vakansiy.server.matching.categorizeCandidate",
+      "label": "Function",
+      "file_path": "research/sources/Slavik993__Agregator-IT-vakansiy/server/matching.js",
+      "start_line": 19,
+      "end_line": 44,
+      "source": "function categorizeCandidate(candidate, achievements) {\n  const stack = normalizeList(candidate.stack);\n  const grade = candidate.verified_grade || candidate.grade;\n  const role = candidate.role;\n  const achievementsCount = Array.isArray(achievements) ? achievements.length : 0;\n\n  let effectiveGrade = grade;\n  if (achievementsCount >= 2 && grade === 'middle') {\n    effectiveGrade = 'senior';\n  } else if (achievementsCount >= 1 && grade === 'junior') {\n    effectiveGrade = 'middle';\n  }\n\n  return {\n    category: {\n      stack: stack.sort(),\n      grade: effectiveGrade,\n      role,\n      work_format: candidate.work_format,\n      city: candidate.city || null,\n    },\n    verified: achievementsCount > 0,\n    achievementsCount,\n    gradeBoosted: effectiveGrade !== grade,\n  };\n}\n",
+      "callers": 0,
+      "callees": 1
+    },
+    {
+      "symbol": "SergeLyamin__fsp-talent.backend.app.modules.testing.engine.pick_next",
+      "name": "pick_next",
+      "qualified_name": "fsp-repository-research-2026-10-08.SergeLyamin__fsp-talent.backend.app.modules.testing.engine.pick_next",
+      "label": "Function",
+      "file_path": "research/sources/SergeLyamin__fsp-talent/backend/app/modules/testing/engine.py",
+      "start_line": 111,
+      "end_line": 134,
+      "source": "def pick_next(specialization: str, grade: str, answered: list[Answered], rng: random.Random,\n              policy: Policy = DEFAULT_POLICY, difficulty: Difficulty = nominal_difficulty,\n              excluded: frozenset[str] | set[str] = frozenset()) -> Template | None:\n    \"\"\"Выбирает следующий шаблон или None, если подходящих не осталось. excluded — снятые с оценки шаблоны.\"\"\"\n    used = {a.template_id for a in answered} | set(excluded)\n    counts = Counter(a.topic for a in answered)\n    caps = topic_caps(specialization, policy.max_items)\n    point = GRADE_CUT[grade] if policy.target == \"cut\" else estimate(grade, answered)[0]\n    level = GRADE_LEVEL[grade]\n    candidates = [t for t in templates_for(specialization) if t.id not in used]\n    concepts = sum(1 for a in answered if not BANK[a.template_id].generated)\n    if concepts >= CONCEPT_SHARE * policy.max_items:\n        candidates = [t for t in candidates if t.generated] or candidates\n    # Сначала уровни рядом с заявленным грейдом; если их не хватает — расширяем окно\n    for window in (1, 2, 4):\n        pool = [t for t in candidates if abs(t.level - level) <= window]\n        within_caps = [t for t in pool if counts[t.topic] < caps[t.topic]]\n        pool = within_caps or pool\n        if pool:\n            break\n    else:\n        return None\n    pool.sort(key=lambda t: (-information(point, difficulty(t), t.discrimination, t.guessing), t.id))\n    return rng.choice(pool[:RANDOMESQUE])\n",
+      "callers": 2,
+      "callees": 5
+    },
+    {
+      "symbol": "PRANGATE__hhhakaton_programing_sport_zzz.server.modules.test.test.service.finishAttempt",
+      "name": "finishAttempt",
+      "qualified_name": "fsp-repository-research-2026-10-08.PRANGATE__hhhakaton_programing_sport_zzz.server.modules.test.test.service.finishAttempt",
+      "label": "Function",
+      "file_path": "research/sources/PRANGATE__hhhakaton_programing_sport_zzz/server/modules/test/test.service.js",
+      "start_line": 67,
+      "end_line": 109,
+      "source": "export const finishAttempt = async ({ attemptId, userId }) => {\n  const attempt = await repo.getAttempt(attemptId);\n  if (!attempt || attempt.user_id !== userId) {\n    const err = new Error('not_found'); err.code = 'NOT_FOUND'; throw err;\n  }\n  if (attempt.status !== 'in_progress') {\n    return { attempt, breakdown: await repo.listAnswers(attemptId) };\n  }\n\n  const answers = await repo.listAnswers(attemptId);\n  const total = answers.reduce((s, a) => s + (a.score || 0), 0);\n  const score = answers.length ? Math.round(total / answers.length) : 0;\n\n  const passed = score >= PASS_THRESHOLD;\n  const awardedGrade = passed\n    ? attempt.target_grade_id\n    : LOWER_GRADE[attempt.target_grade_id];  // не понижаем принудительно, только предлагаем\n\n  const finished = await repo.finishAttempt({\n    id: attemptId,\n    awardedGradeId: passed ? attempt.target_grade_id : null,\n    score,\n    status: passed ? 'passed' : 'failed',\n  });\n\n  return {\n    attempt: finished,\n    score,\n    passed,\n    awarded_grade_id: awardedGrade,\n    suggested_lower: !passed ? LOWER_GRADE[attempt.target_grade_id] : null,\n    breakdown: answers.map(a => ({\n      question_id: a.question_id,\n      prompt: a.prompt,\n      kind: a.kind,\n      options: a.options,\n      correct: a.correct,\n      payload: a.payload,\n      is_correct: a.is_correct,\n      score: a.score,\n    })),\n  };\n};",
+      "callers": 1,
+      "callees": 3
+    }
+  ],
+  "traces": [
+    {
+      "symbol": "miliantr__fsp-talent.backend.app.services.tasks_service.offer_due",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "function: fsp-repository-research-2026-10-08.miliantr__fsp-talent.backend.app.services.tasks_service.offer_due\ndirection: both\ncallees_total: 8\ncallees: 8  (rows: name hop; qn = group prefix + \".\" + name)\nfsp-repository-research-2026-10-08.Daniel123912__invite-match.backend.app.core.privacy:\n  utcnow 1\nfsp-repository-research-2026-10-08.LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-.backend.app.repositories.base.BaseRepository:\n  add 1\nfsp-repository-research-2026-10-08.LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-.frontend.src.ui.Segmented:\n  select 1\nfsp-repository-research-2026-10-08.miliantr__fsp-talent.backend.app.models.jobs:\n  TaskAssignment 1\nfsp-repository-research-2026-10-08.miliantr__fsp-talent.backend.app.services.tasks_service:\n  _candidate_score 1\n  _offers_count 1\n  expire_overdue 1\n  next_offer_at 1\ncallers_total: 3\ncallers: 3  (rows: name hop; qn = group prefix + \".\" + name)\nfsp-repository-research-2026-10-08.miliantr__fsp-talent.backend.app.seed.demo:\n  seed_tasks 1\nfsp-repository-research-2026-10-08.miliantr__fsp-talent.backend.app.services.tasks_service:\n  for_candidate 1\n  offer_all_due 1\n"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "symbol": "fazzyfan__FSP_26.backend.app.services.assessment.save_answers",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "function: fsp-repository-research-2026-10-08.fazzyfan__FSP_26.backend.app.services.assessment.save_answers\ndirection: both\ncallees_total: 6\ncallees: 6  (rows: name hop; qn = group prefix + \".\" + name)\nbuiltins.dict:\n  get 1\nfsp-repository-research-2026-10-08.LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-.backend.app.repositories.base.BaseRepository:\n  add 1\nfsp-repository-research-2026-10-08.fazzyfan__FSP_26.backend.app.core.errors:\n  Problem 1\nfsp-repository-research-2026-10-08.fazzyfan__FSP_26.backend.app.models.assessment:\n  TestAttemptAnswer 1\nfsp-repository-research-2026-10-08.fazzyfan__FSP_26.backend.app.services.assessment:\n  attempt_answers_map 1\n  mark_expired 1\ncallers_total: 1\ncallers: 1  (rows: name hop; qn = group prefix + \".\" + name)\nfsp-repository-research-2026-10-08.fazzyfan__FSP_26.backend.app.api.v1.assessment:\n  save_attempt_answers 1\n"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "symbol": "SergeLyamin__fsp-talent.backend.app.modules.testing.engine.pick_next",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "function: fsp-repository-research-2026-10-08.SergeLyamin__fsp-talent.backend.app.modules.testing.engine.pick_next\ndirection: both\ncallees_total: 1\ncallees: 1  (rows: name hop; qn = group prefix + \".\" + name)\nfsp-repository-research-2026-10-08.LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-.backend.app.services.assessment.items:\n  choice 1\ncallers_total: 0\ncallers: 0  (rows: name hop; qn = group prefix + \".\" + name)\n"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "limitation": "Combined index showed spurious cross-repository call resolution for common names (select, add, utcnow, choice). Such edges were not used as evidence; imports and exact source were read directly. No runtime or tests of downloaded third-party code were executed.",
+  "final_cited_code_coverage": {
+    "project": "fsp-repository-research-2026-10-08",
+    "signal": "best_effort",
+    "indexed_at": "2026-10-08T15:59:14Z",
+    "metadata": {
+      "generation": "2026-10-08T15:59:14Z",
+      "index_mode": "fast",
+      "recorded_at": "2026-10-08T15:59:14Z",
+      "recording_status": "complete",
+      "ignored_files_stored": 93,
+      "ignored_files_total": 93,
+      "hash_records_complete": true,
+      "coverage_version": 3,
+      "generation_matches": true
+    },
+    "paths": [
+      {
+        "requested_path": "Daniel123912__invite-match/backend/app/core/privacy.py",
+        "path": "Daniel123912__invite-match/backend/app/core/privacy.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "Daniel123912__invite-match/backend/app/services/match_service.py",
+        "path": "Daniel123912__invite-match/backend/app/services/match_service.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "Daniel123912__invite-match/backend/app/services/test_service.py",
+        "path": "Daniel123912__invite-match/backend/app/services/test_service.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "Daniel123912__invite-match/backend/tests/test_flow.py",
+        "path": "Daniel123912__invite-match/backend/tests/test_flow.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/db/session.py",
+        "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/db/session.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/passport.py",
+        "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/passport.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/tasks.py",
+        "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/app/services/tasks.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/migrations/rls.py",
+        "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/migrations/rls.py",
+        "status": "excluded",
+        "freshness": "not_tracked",
+        "recommended_action": "read_source_and_reindex",
+        "coverage": [
+          {
+            "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/migrations",
+            "kind": "not_indexed_dir",
+            "detail": "excluded subtree",
+            "match": "ancestor"
+          }
+        ]
+      },
+      {
+        "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/tests/test_passport.py",
+        "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/tests/test_passport.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/tests/test_rls_postgres.py",
+        "path": "LaimOr127__Digital-platform-aggregator-of-IT-vacancies-FSP-/backend/tests/test_rls_postgres.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/db.js",
+        "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/db.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/index.js",
+        "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/index.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/matching/matching.router.js",
+        "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/matching/matching.router.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/test/test.service.js",
+        "path": "PRANGATE__hhhakaton_programing_sport_zzz/server/modules/test/test.service.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/matching/ranking.py",
+        "path": "SergeLyamin__fsp-talent/backend/app/modules/matching/ranking.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/testing/calibration.py",
+        "path": "SergeLyamin__fsp-talent/backend/app/modules/testing/calibration.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/testing/engine.py",
+        "path": "SergeLyamin__fsp-talent/backend/app/modules/testing/engine.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/testing/irt.py",
+        "path": "SergeLyamin__fsp-talent/backend/app/modules/testing/irt.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "SergeLyamin__fsp-talent/backend/app/modules/testing/service.py",
+        "path": "SergeLyamin__fsp-talent/backend/app/modules/testing/service.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "Slavik993__Agregator-IT-vakansiy/server/matching.js",
+        "path": "Slavik993__Agregator-IT-vakansiy/server/matching.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "Slavik993__Agregator-IT-vakansiy/server/services/pdf.js",
+        "path": "Slavik993__Agregator-IT-vakansiy/server/services/pdf.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "Slavik993__Agregator-IT-vakansiy/server/visability.js",
+        "path": "Slavik993__Agregator-IT-vakansiy/server/visability.js",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "fazzyfan__FSP_26/backend/app/api/v1/invitations.py",
+        "path": "fazzyfan__FSP_26/backend/app/api/v1/invitations.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "fazzyfan__FSP_26/backend/app/services/assessment.py",
+        "path": "fazzyfan__FSP_26/backend/app/services/assessment.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "fazzyfan__FSP_26/backend/app/services/contacts.py",
+        "path": "fazzyfan__FSP_26/backend/app/services/contacts.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "fazzyfan__FSP_26/backend/app/services/matching.py",
+        "path": "fazzyfan__FSP_26/backend/app/services/matching.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "miliantr__fsp-talent/backend/app/services/matching/engine.py",
+        "path": "miliantr__fsp-talent/backend/app/services/matching/engine.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "miliantr__fsp-talent/backend/app/services/tasks_service.py",
+        "path": "miliantr__fsp-talent/backend/app/services/tasks_service.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      },
+      {
+        "requested_path": "miliantr__fsp-talent/backend/app/services/testing/irt.py",
+        "path": "miliantr__fsp-talent/backend/app/services/testing/irt.py",
+        "status": "no_recorded_issue",
+        "freshness": "metadata_match",
+        "recommended_action": "use_graph_with_best_effort_caveat",
+        "coverage": []
+      }
+    ],
+    "scopes": [],
+    "caveat": "Best-effort signal only. No recorded issue does not prove graph or source completeness; read flagged source and qualify claims when metadata is changed or unavailable."
+  },
+  "source_fallback": [
+    "RLS migration fully read despite excluded directory",
+    "Direct imports and calls for save_answers / pick_next / offer_due read to resolve graph false cross-repository edges",
+    "Public server tree and LLM literals checked; PRANGATE AI Service treated as concept"
+  ]
+}

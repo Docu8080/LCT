@@ -1,0 +1,1028 @@
+{
+  "seed": 20261010,
+  "assessment_n": 720,
+  "assessment": [
+    {
+      "specialization": "backend",
+      "grade": "Junior",
+      "n": 120,
+      "theta_rmse": 0.497,
+      "classification_accuracy": 0.933,
+      "mean_decision_confidence": 94.6
+    },
+    {
+      "specialization": "backend",
+      "grade": "Middle",
+      "n": 120,
+      "theta_rmse": 0.519,
+      "classification_accuracy": 0.942,
+      "mean_decision_confidence": 94.7
+    },
+    {
+      "specialization": "backend",
+      "grade": "Senior",
+      "n": 120,
+      "theta_rmse": 0.553,
+      "classification_accuracy": 0.875,
+      "mean_decision_confidence": 92.3
+    },
+    {
+      "specialization": "frontend",
+      "grade": "Junior",
+      "n": 120,
+      "theta_rmse": 0.519,
+      "classification_accuracy": 0.95,
+      "mean_decision_confidence": 94.5
+    },
+    {
+      "specialization": "frontend",
+      "grade": "Middle",
+      "n": 120,
+      "theta_rmse": 0.465,
+      "classification_accuracy": 0.983,
+      "mean_decision_confidence": 94.1
+    },
+    {
+      "specialization": "frontend",
+      "grade": "Senior",
+      "n": 120,
+      "theta_rmse": 0.632,
+      "classification_accuracy": 0.933,
+      "mean_decision_confidence": 92.3
+    }
+  ],
+  "matching_profiles_n": 150,
+  "matching_queries_n": 40,
+  "matching": {
+    "mean_ndcg_at_5": 0.9799,
+    "random_mean_ndcg_at_5": 0.2117,
+    "mean_precision_at_5": 1.0
+  },
+  "limitations": [
+    "Responses simulated using the same IRT model used for scoring; optimistic and not independent empirical validation.",
+    "Difficulties, grade cuts and weights are expert assumptions; no actual candidate calibration.",
+    "Matching relevance labels use a transparent synthetic rubric, not employer judgments or hiring outcomes."
+  ],
+  "queries": [
+    {
+      "query": 0,
+      "need": {
+        "specialization": "backend",
+        "grade": "Senior",
+        "skills": [
+          "SQL",
+          "FastAPI",
+          "PostgreSQL"
+        ],
+        "salary_to": 189000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.2702,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        85,
+        29,
+        45,
+        88,
+        147
+      ]
+    },
+    {
+      "query": 1,
+      "need": {
+        "specialization": "backend",
+        "grade": "Middle",
+        "skills": [
+          "PostgreSQL",
+          "SQL",
+          "Python"
+        ],
+        "salary_to": 214000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 0.8777,
+      "random_ndcg_at_5": 0.1543,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        56,
+        7,
+        27,
+        114,
+        6
+      ]
+    },
+    {
+      "query": 2,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Senior",
+        "skills": [
+          "JavaScript",
+          "TypeScript",
+          "React"
+        ],
+        "salary_to": 254000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.1479,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        71,
+        138,
+        124,
+        16,
+        123
+      ]
+    },
+    {
+      "query": 3,
+      "need": {
+        "specialization": "backend",
+        "grade": "Middle",
+        "skills": [
+          "SQL",
+          "Python",
+          "FastAPI"
+        ],
+        "salary_to": 191000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.2016,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        56,
+        27,
+        114,
+        6,
+        131
+      ]
+    },
+    {
+      "query": 4,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Middle",
+        "skills": [
+          "JavaScript",
+          "CSS",
+          "React"
+        ],
+        "salary_to": 265000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.747,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        87,
+        52,
+        72,
+        41,
+        116
+      ]
+    },
+    {
+      "query": 5,
+      "need": {
+        "specialization": "backend",
+        "grade": "Junior",
+        "skills": [
+          "SQL",
+          "FastAPI",
+          "PostgreSQL"
+        ],
+        "salary_to": 233000,
+        "work_format": "office"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0727,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        9,
+        21,
+        148,
+        94,
+        120
+      ]
+    },
+    {
+      "query": 6,
+      "need": {
+        "specialization": "backend",
+        "grade": "Senior",
+        "skills": [
+          "FastAPI",
+          "SQL",
+          "Python"
+        ],
+        "salary_to": 217000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0187,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        85,
+        77,
+        88,
+        141,
+        97
+      ]
+    },
+    {
+      "query": 7,
+      "need": {
+        "specialization": "backend",
+        "grade": "Junior",
+        "skills": [
+          "Python",
+          "SQL",
+          "PostgreSQL"
+        ],
+        "salary_to": 182000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        9,
+        94,
+        120,
+        115,
+        148
+      ]
+    },
+    {
+      "query": 8,
+      "need": {
+        "specialization": "backend",
+        "grade": "Middle",
+        "skills": [
+          "SQL",
+          "Python",
+          "FastAPI"
+        ],
+        "salary_to": 290000,
+        "work_format": "office"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.512,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        56,
+        114,
+        6,
+        112,
+        27
+      ]
+    },
+    {
+      "query": 9,
+      "need": {
+        "specialization": "backend",
+        "grade": "Junior",
+        "skills": [
+          "FastAPI",
+          "SQL",
+          "Python"
+        ],
+        "salary_to": 150000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        94,
+        120,
+        9,
+        66,
+        111
+      ]
+    },
+    {
+      "query": 10,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Middle",
+        "skills": [
+          "TypeScript",
+          "React",
+          "CSS"
+        ],
+        "salary_to": 260000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 0.925,
+      "random_ndcg_at_5": 0.1543,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        1,
+        52,
+        72,
+        87,
+        41
+      ]
+    },
+    {
+      "query": 11,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Senior",
+        "skills": [
+          "TypeScript",
+          "CSS",
+          "JavaScript"
+        ],
+        "salary_to": 157000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 0.8777,
+      "random_ndcg_at_5": 0.1188,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        80,
+        138,
+        145,
+        89,
+        107
+      ]
+    },
+    {
+      "query": 12,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Junior",
+        "skills": [
+          "JavaScript",
+          "React",
+          "CSS"
+        ],
+        "salary_to": 275000,
+        "work_format": "office"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.1298,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        26,
+        91,
+        132,
+        136,
+        142
+      ]
+    },
+    {
+      "query": 13,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Middle",
+        "skills": [
+          "TypeScript",
+          "React",
+          "JavaScript"
+        ],
+        "salary_to": 262000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.3559,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        116,
+        87,
+        72,
+        52,
+        106
+      ]
+    },
+    {
+      "query": 14,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Senior",
+        "skills": [
+          "JavaScript",
+          "CSS",
+          "TypeScript"
+        ],
+        "salary_to": 242000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 0.9165,
+      "random_ndcg_at_5": 0.1543,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        80,
+        89,
+        145,
+        138,
+        71
+      ]
+    },
+    {
+      "query": 15,
+      "need": {
+        "specialization": "backend",
+        "grade": "Middle",
+        "skills": [
+          "Python",
+          "FastAPI",
+          "PostgreSQL"
+        ],
+        "salary_to": 193000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 0.9165,
+      "random_ndcg_at_5": 0.1353,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        56,
+        114,
+        6,
+        27,
+        112
+      ]
+    },
+    {
+      "query": 16,
+      "need": {
+        "specialization": "backend",
+        "grade": "Senior",
+        "skills": [
+          "SQL",
+          "Python",
+          "PostgreSQL"
+        ],
+        "salary_to": 178000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.2806,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        77,
+        85,
+        141,
+        88,
+        45
+      ]
+    },
+    {
+      "query": 17,
+      "need": {
+        "specialization": "backend",
+        "grade": "Senior",
+        "skills": [
+          "SQL",
+          "Python",
+          "PostgreSQL"
+        ],
+        "salary_to": 188000,
+        "work_format": "office"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0562,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        88,
+        45,
+        85,
+        29,
+        97
+      ]
+    },
+    {
+      "query": 18,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Senior",
+        "skills": [
+          "JavaScript",
+          "TypeScript",
+          "React"
+        ],
+        "salary_to": 156000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.3008,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        138,
+        124,
+        37,
+        71,
+        145
+      ]
+    },
+    {
+      "query": 19,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Junior",
+        "skills": [
+          "React",
+          "TypeScript",
+          "JavaScript"
+        ],
+        "salary_to": 283000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.4118,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        132,
+        142,
+        26,
+        121,
+        54
+      ]
+    },
+    {
+      "query": 20,
+      "need": {
+        "specialization": "backend",
+        "grade": "Junior",
+        "skills": [
+          "Python",
+          "FastAPI",
+          "SQL"
+        ],
+        "salary_to": 293000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        94,
+        120,
+        111,
+        66,
+        148
+      ]
+    },
+    {
+      "query": 21,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Middle",
+        "skills": [
+          "TypeScript",
+          "JavaScript",
+          "CSS"
+        ],
+        "salary_to": 221000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.2265,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        87,
+        48,
+        52,
+        41,
+        10
+      ]
+    },
+    {
+      "query": 22,
+      "need": {
+        "specialization": "backend",
+        "grade": "Middle",
+        "skills": [
+          "FastAPI",
+          "PostgreSQL",
+          "Python"
+        ],
+        "salary_to": 240000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 0.9165,
+      "random_ndcg_at_5": 0.294,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        56,
+        114,
+        131,
+        27,
+        112
+      ]
+    },
+    {
+      "query": 23,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Senior",
+        "skills": [
+          "CSS",
+          "React",
+          "TypeScript"
+        ],
+        "salary_to": 286000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 0.925,
+      "random_ndcg_at_5": 0.1696,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        145,
+        80,
+        47,
+        107,
+        124
+      ]
+    },
+    {
+      "query": 24,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Middle",
+        "skills": [
+          "JavaScript",
+          "CSS",
+          "TypeScript"
+        ],
+        "salary_to": 150000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.3925,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        87,
+        48,
+        52,
+        10,
+        41
+      ]
+    },
+    {
+      "query": 25,
+      "need": {
+        "specialization": "backend",
+        "grade": "Junior",
+        "skills": [
+          "SQL",
+          "FastAPI",
+          "PostgreSQL"
+        ],
+        "salary_to": 179000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.1461,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        21,
+        94,
+        120,
+        9,
+        119
+      ]
+    },
+    {
+      "query": 26,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Junior",
+        "skills": [
+          "JavaScript",
+          "TypeScript",
+          "CSS"
+        ],
+        "salary_to": 245000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        26,
+        132,
+        142,
+        69,
+        91
+      ]
+    },
+    {
+      "query": 27,
+      "need": {
+        "specialization": "backend",
+        "grade": "Senior",
+        "skills": [
+          "Python",
+          "FastAPI",
+          "PostgreSQL"
+        ],
+        "salary_to": 246000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        85,
+        88,
+        77,
+        50,
+        97
+      ]
+    },
+    {
+      "query": 28,
+      "need": {
+        "specialization": "backend",
+        "grade": "Junior",
+        "skills": [
+          "Python",
+          "PostgreSQL",
+          "FastAPI"
+        ],
+        "salary_to": 205000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0562,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        66,
+        94,
+        111,
+        9,
+        44
+      ]
+    },
+    {
+      "query": 29,
+      "need": {
+        "specialization": "backend",
+        "grade": "Senior",
+        "skills": [
+          "FastAPI",
+          "PostgreSQL",
+          "Python"
+        ],
+        "salary_to": 240000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0917,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        77,
+        85,
+        88,
+        97,
+        141
+      ]
+    },
+    {
+      "query": 30,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Junior",
+        "skills": [
+          "JavaScript",
+          "TypeScript",
+          "React"
+        ],
+        "salary_to": 280000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.1353,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        132,
+        142,
+        26,
+        121,
+        54
+      ]
+    },
+    {
+      "query": 31,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Junior",
+        "skills": [
+          "JavaScript",
+          "TypeScript",
+          "React"
+        ],
+        "salary_to": 171000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.2493,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        26,
+        132,
+        142,
+        121,
+        54
+      ]
+    },
+    {
+      "query": 32,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Senior",
+        "skills": [
+          "CSS",
+          "JavaScript",
+          "React"
+        ],
+        "salary_to": 214000,
+        "work_format": "office"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.4179,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        71,
+        145,
+        16,
+        80,
+        138
+      ]
+    },
+    {
+      "query": 33,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Middle",
+        "skills": [
+          "JavaScript",
+          "React",
+          "CSS"
+        ],
+        "salary_to": 261000,
+        "work_format": "office"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.5587,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        52,
+        72,
+        87,
+        41,
+        116
+      ]
+    },
+    {
+      "query": 34,
+      "need": {
+        "specialization": "backend",
+        "grade": "Middle",
+        "skills": [
+          "SQL",
+          "FastAPI",
+          "PostgreSQL"
+        ],
+        "salary_to": 148000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 0.8416,
+      "random_ndcg_at_5": 0.4019,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        56,
+        114,
+        6,
+        7,
+        27
+      ]
+    },
+    {
+      "query": 35,
+      "need": {
+        "specialization": "backend",
+        "grade": "Middle",
+        "skills": [
+          "Python",
+          "FastAPI",
+          "PostgreSQL"
+        ],
+        "salary_to": 202000,
+        "work_format": "office"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.2385,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        56,
+        114,
+        6,
+        112,
+        38
+      ]
+    },
+    {
+      "query": 36,
+      "need": {
+        "specialization": "backend",
+        "grade": "Junior",
+        "skills": [
+          "SQL",
+          "Python",
+          "PostgreSQL"
+        ],
+        "salary_to": 224000,
+        "work_format": "hybrid"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        94,
+        120,
+        9,
+        66,
+        111
+      ]
+    },
+    {
+      "query": 37,
+      "need": {
+        "specialization": "backend",
+        "grade": "Senior",
+        "skills": [
+          "FastAPI",
+          "PostgreSQL",
+          "SQL"
+        ],
+        "salary_to": 152000,
+        "work_format": "remote"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.3008,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        85,
+        29,
+        45,
+        88,
+        50
+      ]
+    },
+    {
+      "query": 38,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Junior",
+        "skills": [
+          "CSS",
+          "React",
+          "JavaScript"
+        ],
+        "salary_to": 207000,
+        "work_format": "office"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.0727,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        26,
+        91,
+        132,
+        136,
+        142
+      ]
+    },
+    {
+      "query": 39,
+      "need": {
+        "specialization": "frontend",
+        "grade": "Junior",
+        "skills": [
+          "CSS",
+          "TypeScript",
+          "JavaScript"
+        ],
+        "salary_to": 273000,
+        "work_format": "office"
+      },
+      "ndcg_at_5": 1.0,
+      "random_ndcg_at_5": 0.4935,
+      "precision_at_5": 1.0,
+      "top_ids": [
+        26,
+        91,
+        96,
+        142,
+        132
+      ]
+    }
+  ]
+}

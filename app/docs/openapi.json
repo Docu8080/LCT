@@ -1,0 +1,2252 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ФСП Таланты · API",
+    "description": "Платформа обратного найма. Демо-реестр и данные синтетические.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "Авторизация"
+        ],
+        "summary": "Register",
+        "operationId": "register_api_auth_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/verify": {
+      "post": {
+        "tags": [
+          "Авторизация"
+        ],
+        "summary": "Verify",
+        "operationId": "verify_api_auth_verify_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Авторизация"
+        ],
+        "summary": "Login",
+        "operationId": "login_api_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/resend": {
+      "post": {
+        "tags": [
+          "Авторизация"
+        ],
+        "summary": "Resend Verification",
+        "operationId": "resend_verification_api_auth_resend_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "Авторизация"
+        ],
+        "summary": "Logout",
+        "operationId": "logout_api_auth_logout_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "tags": [
+          "Авторизация"
+        ],
+        "summary": "Me",
+        "operationId": "me_api_auth_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/legal/config": {
+      "get": {
+        "tags": [
+          "Приватность"
+        ],
+        "summary": "Legal Config",
+        "operationId": "legal_config_api_legal_config_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/account/privacy": {
+      "get": {
+        "tags": [
+          "Приватность"
+        ],
+        "summary": "Account Privacy",
+        "operationId": "account_privacy_api_account_privacy_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/account/marketing/opt-out": {
+      "post": {
+        "tags": [
+          "Приватность"
+        ],
+        "summary": "Marketing Opt Out",
+        "operationId": "marketing_opt_out_api_account_marketing_opt_out_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/account": {
+      "delete": {
+        "tags": [
+          "Приватность"
+        ],
+        "summary": "Delete Account",
+        "operationId": "delete_account_api_account_delete",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteAccountData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/account/erasure": {
+      "post": {
+        "tags": [
+          "Приватность"
+        ],
+        "summary": "Erase Deactivated Account",
+        "operationId": "erase_deactivated_account_api_account_erasure_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ErasureData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/references": {
+      "get": {
+        "tags": [
+          "Справочники"
+        ],
+        "summary": "References",
+        "operationId": "references_api_references_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/profile": {
+      "get": {
+        "tags": [
+          "Кандидат"
+        ],
+        "summary": "Own Profile",
+        "operationId": "own_profile_api_candidate_profile_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Кандидат"
+        ],
+        "summary": "Save Profile",
+        "operationId": "save_profile_api_candidate_profile_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/consent/revoke": {
+      "post": {
+        "tags": [
+          "Кандидат"
+        ],
+        "summary": "Revoke Consent",
+        "operationId": "revoke_consent_api_candidate_consent_revoke_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/account/consent/revoke": {
+      "post": {
+        "tags": [
+          "Приватность"
+        ],
+        "summary": "Withdraw Consent",
+        "operationId": "withdraw_consent_api_account_consent_revoke_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/fsp/link": {
+      "post": {
+        "tags": [
+          "ФСП"
+        ],
+        "summary": "Link Fsp",
+        "operationId": "link_fsp_api_candidate_fsp_link_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FspData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/fsp/confirm": {
+      "post": {
+        "tags": [
+          "ФСП"
+        ],
+        "summary": "Confirm Fsp",
+        "operationId": "confirm_fsp_api_candidate_fsp_confirm_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CodeData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/fsp": {
+      "delete": {
+        "tags": [
+          "ФСП"
+        ],
+        "summary": "Unlink Fsp",
+        "operationId": "unlink_fsp_api_candidate_fsp_delete",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/tests": {
+      "get": {
+        "tags": [
+          "Тестирование"
+        ],
+        "summary": "Test Status",
+        "operationId": "test_status_api_candidate_tests_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Тестирование"
+        ],
+        "summary": "Start Test",
+        "operationId": "start_test_api_candidate_tests_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TestChoice"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/tests/{attempt_id}/answers": {
+      "put": {
+        "tags": [
+          "Тестирование"
+        ],
+        "summary": "Save Answers",
+        "operationId": "save_answers_api_candidate_tests__attempt_id__answers_put",
+        "parameters": [
+          {
+            "name": "attempt_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Attempt Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnswersData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/tests/{attempt_id}/finish": {
+      "post": {
+        "tags": [
+          "Тестирование"
+        ],
+        "summary": "Finish Test",
+        "operationId": "finish_test_api_candidate_tests__attempt_id__finish_post",
+        "parameters": [
+          {
+            "name": "attempt_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Attempt Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employer/company": {
+      "get": {
+        "tags": [
+          "Компания"
+        ],
+        "summary": "Get Company",
+        "operationId": "get_company_api_employer_company_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Компания"
+        ],
+        "summary": "Save Company",
+        "operationId": "save_company_api_employer_company_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employer/needs": {
+      "get": {
+        "tags": [
+          "Потребности"
+        ],
+        "summary": "List Needs",
+        "operationId": "list_needs_api_employer_needs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Потребности"
+        ],
+        "summary": "Create Need",
+        "operationId": "create_need_api_employer_needs_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NeedData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employer/needs/{need_id}": {
+      "put": {
+        "tags": [
+          "Потребности"
+        ],
+        "summary": "Edit Need",
+        "operationId": "edit_need_api_employer_needs__need_id__put",
+        "parameters": [
+          {
+            "name": "need_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Need Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NeedData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employer/candidates": {
+      "get": {
+        "tags": [
+          "Подбор"
+        ],
+        "summary": "Find Candidates",
+        "operationId": "find_candidates_api_employer_candidates_get",
+        "parameters": [
+          {
+            "name": "need_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Need Id"
+            }
+          },
+          {
+            "name": "specialization",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "backend",
+                "frontend"
+              ],
+              "type": "string",
+              "default": "backend",
+              "title": "Specialization"
+            }
+          },
+          {
+            "name": "grade",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "Junior",
+                "Middle",
+                "Senior"
+              ],
+              "type": "string",
+              "default": "Middle",
+              "title": "Grade"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Q"
+            }
+          },
+          {
+            "name": "fsp",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Fsp"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employer/candidates/{candidate_id}": {
+      "get": {
+        "tags": [
+          "Подбор"
+        ],
+        "summary": "Candidate Detail",
+        "operationId": "candidate_detail_api_employer_candidates__candidate_id__get",
+        "parameters": [
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Candidate Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employer/invitations": {
+      "post": {
+        "tags": [
+          "Приглашения"
+        ],
+        "summary": "Invite",
+        "operationId": "invite_api_employer_invitations_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvitationData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/invitations": {
+      "get": {
+        "tags": [
+          "Приглашения"
+        ],
+        "summary": "Invitations",
+        "operationId": "invitations_api_invitations_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/invitations/{invitation_id}": {
+      "patch": {
+        "tags": [
+          "Приглашения"
+        ],
+        "summary": "Respond",
+        "operationId": "respond_api_invitations__invitation_id__patch",
+        "parameters": [
+          {
+            "name": "invitation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Invitation Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Decision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/contacts": {
+      "get": {
+        "tags": [
+          "Приватность"
+        ],
+        "summary": "Contact Grants",
+        "operationId": "contact_grants_api_candidate_contacts_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/contacts/{employer_id}": {
+      "delete": {
+        "tags": [
+          "Приватность"
+        ],
+        "summary": "Revoke Contacts",
+        "operationId": "revoke_contacts_api_candidate_contacts__employer_id__delete",
+        "parameters": [
+          {
+            "name": "employer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Employer Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs": {
+      "get": {
+        "tags": [
+          "Вакансии"
+        ],
+        "summary": "Jobs",
+        "operationId": "jobs_api_jobs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs/{need_id}/apply": {
+      "post": {
+        "tags": [
+          "Вакансии"
+        ],
+        "summary": "Apply Job",
+        "operationId": "apply_job_api_jobs__need_id__apply_post",
+        "parameters": [
+          {
+            "name": "need_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Need Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/applications": {
+      "get": {
+        "tags": [
+          "Вакансии"
+        ],
+        "summary": "Applications",
+        "operationId": "applications_api_applications_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employer/tasks": {
+      "post": {
+        "tags": [
+          "Задания недели"
+        ],
+        "summary": "Create Task",
+        "operationId": "create_task_api_employer_tasks_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks": {
+      "get": {
+        "tags": [
+          "Задания недели"
+        ],
+        "summary": "List Tasks",
+        "operationId": "list_tasks_api_tasks_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks/{assignment_id}/answer": {
+      "post": {
+        "tags": [
+          "Задания недели"
+        ],
+        "summary": "Answer Task",
+        "operationId": "answer_task_api_tasks__assignment_id__answer_post",
+        "parameters": [
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Assignment Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskAnswerData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employer/task-answers/{answer_id}": {
+      "put": {
+        "tags": [
+          "Задания недели"
+        ],
+        "summary": "Review Task",
+        "operationId": "review_task_api_employer_task_answers__answer_id__put",
+        "parameters": [
+          {
+            "name": "answer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Answer Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/notifications": {
+      "get": {
+        "tags": [
+          "Уведомления"
+        ],
+        "summary": "Notifications",
+        "operationId": "notifications_api_notifications_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/notifications/read": {
+      "post": {
+        "tags": [
+          "Уведомления"
+        ],
+        "summary": "Read Notifications",
+        "operationId": "read_notifications_api_notifications_read_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidate/profile.pdf": {
+      "get": {
+        "tags": [
+          "PDF"
+        ],
+        "summary": "Own Pdf",
+        "operationId": "own_pdf_api_candidate_profile_pdf_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employer/candidates/{candidate_id}/profile.pdf": {
+      "get": {
+        "tags": [
+          "PDF"
+        ],
+        "summary": "Employer Pdf",
+        "operationId": "employer_pdf_api_employer_candidates__candidate_id__profile_pdf_get",
+        "parameters": [
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Candidate Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "tags": [
+          "Система"
+        ],
+        "summary": "Health",
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnswersData": {
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Version"
+          },
+          "answers": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Answers"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version",
+          "answers"
+        ],
+        "title": "AnswersData"
+      },
+      "ApplyData": {
+        "properties": {
+          "share_contacts": {
+            "type": "boolean",
+            "title": "Share Contacts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "share_contacts"
+        ],
+        "title": "ApplyData"
+      },
+      "AuthData": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "minLength": 5,
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "AuthData"
+      },
+      "CodeData": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "maxLength": 6,
+            "minLength": 6,
+            "title": "Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "title": "CodeData"
+      },
+      "CompanyData": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 2,
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 3000,
+            "title": "Description"
+          },
+          "contact": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 3,
+            "title": "Contact"
+          },
+          "website": {
+            "type": "string",
+            "maxLength": 200,
+            "title": "Website",
+            "default": ""
+          },
+          "industry": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Industry",
+            "default": "Продуктовая разработка"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "contact"
+        ],
+        "title": "CompanyData"
+      },
+      "Decision": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "viewed",
+              "accepted",
+              "declined",
+              "withdrawn"
+            ],
+            "title": "Status"
+          },
+          "share_contacts": {
+            "type": "boolean",
+            "title": "Share Contacts",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "Decision"
+      },
+      "DeleteAccountData": {
+        "properties": {
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Password"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "password"
+        ],
+        "title": "DeleteAccountData"
+      },
+      "ErasureData": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "minLength": 5,
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Password"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "ErasureData"
+      },
+      "FspData": {
+        "properties": {
+          "fsp_id": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Fsp Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fsp_id"
+        ],
+        "title": "FspData"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "InvitationData": {
+        "properties": {
+          "candidate_id": {
+            "type": "integer",
+            "title": "Candidate Id"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 3000,
+            "minLength": 20,
+            "title": "Description"
+          },
+          "salary_from": {
+            "type": "integer",
+            "maximum": 10000000.0,
+            "minimum": 1.0,
+            "title": "Salary From"
+          },
+          "salary_to": {
+            "type": "integer",
+            "maximum": 10000000.0,
+            "minimum": 1.0,
+            "title": "Salary To"
+          },
+          "contact": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 3,
+            "title": "Contact"
+          },
+          "work_format": {
+            "type": "string",
+            "enum": [
+              "remote",
+              "hybrid",
+              "office"
+            ],
+            "title": "Work Format"
+          }
+        },
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "title",
+          "description",
+          "salary_from",
+          "salary_to",
+          "contact",
+          "work_format"
+        ],
+        "title": "InvitationData"
+      },
+      "NeedData": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "specialization": {
+            "type": "string",
+            "enum": [
+              "backend",
+              "frontend"
+            ],
+            "title": "Specialization"
+          },
+          "grade": {
+            "type": "string",
+            "enum": [
+              "Junior",
+              "Middle",
+              "Senior"
+            ],
+            "title": "Grade"
+          },
+          "skills": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 20,
+            "title": "Skills"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 5000,
+            "minLength": 20,
+            "title": "Description"
+          },
+          "salary_from": {
+            "type": "integer",
+            "maximum": 10000000.0,
+            "minimum": 1.0,
+            "title": "Salary From"
+          },
+          "salary_to": {
+            "type": "integer",
+            "maximum": 10000000.0,
+            "minimum": 1.0,
+            "title": "Salary To"
+          },
+          "work_format": {
+            "type": "string",
+            "enum": [
+              "remote",
+              "hybrid",
+              "office"
+            ],
+            "title": "Work Format"
+          },
+          "city": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "City",
+            "default": ""
+          },
+          "published": {
+            "type": "boolean",
+            "title": "Published",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "specialization",
+          "grade",
+          "skills",
+          "description",
+          "salary_from",
+          "salary_to",
+          "work_format"
+        ],
+        "title": "NeedData"
+      },
+      "ProfileData": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 2,
+            "title": "Name"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "title": "Title"
+          },
+          "industry": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Industry",
+            "default": "Информационные технологии"
+          },
+          "about": {
+            "type": "string",
+            "maxLength": 3000,
+            "title": "About"
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Phone"
+          },
+          "telegram": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Telegram"
+          },
+          "skills": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 30,
+            "title": "Skills"
+          },
+          "experience": {
+            "type": "integer",
+            "maximum": 60.0,
+            "minimum": 0.0,
+            "title": "Experience"
+          },
+          "city": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "City"
+          },
+          "salary": {
+            "type": "integer",
+            "maximum": 10000000.0,
+            "minimum": 0.0,
+            "title": "Salary"
+          },
+          "work_format": {
+            "type": "string",
+            "enum": [
+              "remote",
+              "hybrid",
+              "office",
+              "any"
+            ],
+            "title": "Work Format"
+          },
+          "team_role": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Team Role"
+          },
+          "soft_skills": {
+            "type": "string",
+            "maxLength": 1000,
+            "title": "Soft Skills"
+          },
+          "specialization": {
+            "type": "string",
+            "enum": [
+              "backend",
+              "frontend"
+            ],
+            "title": "Specialization"
+          },
+          "declared_grade": {
+            "type": "string",
+            "enum": [
+              "Junior",
+              "Middle",
+              "Senior"
+            ],
+            "title": "Declared Grade"
+          },
+          "published": {
+            "type": "boolean",
+            "title": "Published",
+            "default": false
+          },
+          "show_fsp": {
+            "type": "boolean",
+            "title": "Show Fsp",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "title",
+          "about",
+          "phone",
+          "telegram",
+          "skills",
+          "experience",
+          "city",
+          "salary",
+          "work_format",
+          "team_role",
+          "soft_skills",
+          "specialization",
+          "declared_grade"
+        ],
+        "title": "ProfileData"
+      },
+      "RegisterData": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "minLength": 5,
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Password"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 2,
+            "title": "Name"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "candidate",
+              "employer"
+            ],
+            "title": "Role"
+          },
+          "consent": {
+            "type": "boolean",
+            "title": "Consent"
+          },
+          "terms_accepted": {
+            "type": "boolean",
+            "title": "Terms Accepted"
+          },
+          "age_confirmed": {
+            "type": "boolean",
+            "title": "Age Confirmed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password",
+          "name",
+          "role",
+          "consent",
+          "terms_accepted",
+          "age_confirmed"
+        ],
+        "title": "RegisterData"
+      },
+      "ReviewData": {
+        "properties": {
+          "correctness": {
+            "type": "integer",
+            "maximum": 2.0,
+            "minimum": 0.0,
+            "title": "Correctness"
+          },
+          "completeness": {
+            "type": "integer",
+            "maximum": 2.0,
+            "minimum": 0.0,
+            "title": "Completeness"
+          },
+          "reasoning": {
+            "type": "integer",
+            "maximum": 2.0,
+            "minimum": 0.0,
+            "title": "Reasoning"
+          },
+          "feedback": {
+            "type": "string",
+            "maxLength": 3000,
+            "minLength": 10,
+            "title": "Feedback"
+          }
+        },
+        "type": "object",
+        "required": [
+          "correctness",
+          "completeness",
+          "reasoning",
+          "feedback"
+        ],
+        "title": "ReviewData"
+      },
+      "TaskAnswerData": {
+        "properties": {
+          "answer": {
+            "type": "string",
+            "maxLength": 8000,
+            "minLength": 20,
+            "title": "Answer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "answer"
+        ],
+        "title": "TaskAnswerData"
+      },
+      "TaskData": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "specialization": {
+            "type": "string",
+            "enum": [
+              "backend",
+              "frontend"
+            ],
+            "title": "Specialization"
+          },
+          "grade": {
+            "type": "string",
+            "enum": [
+              "Junior",
+              "Middle",
+              "Senior"
+            ],
+            "title": "Grade"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 5000,
+            "minLength": 30,
+            "title": "Description"
+          },
+          "topic": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Topic",
+            "default": ""
+          },
+          "keywords": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 10,
+            "title": "Keywords",
+            "default": []
+          },
+          "rubric": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 3,
+            "title": "Rubric",
+            "default": [
+              "Корректность",
+              "Полнота",
+              "Обоснование"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "specialization",
+          "grade",
+          "description"
+        ],
+        "title": "TaskData"
+      },
+      "TestChoice": {
+        "properties": {
+          "specialization": {
+            "type": "string",
+            "enum": [
+              "backend",
+              "frontend"
+            ],
+            "title": "Specialization"
+          },
+          "grade": {
+            "type": "string",
+            "enum": [
+              "Junior",
+              "Middle",
+              "Senior"
+            ],
+            "title": "Grade"
+          }
+        },
+        "type": "object",
+        "required": [
+          "specialization",
+          "grade"
+        ],
+        "title": "TestChoice"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VerifyData": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "title": "Email"
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 6,
+            "minLength": 6,
+            "title": "Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "code"
+        ],
+        "title": "VerifyData"
+      }
+    }
+  }
+}
