@@ -1,5 +1,6 @@
 {
   "seed": 20261010,
+  "dataset_sha256": "04de0d3802d5baf9b0d350a36b31230cdcf5cb9a01f83e161a40e450a0dc3aae",
   "assessment_n": 720,
   "assessment": [
     {
@@ -54,14 +55,17 @@
   "matching_profiles_n": 150,
   "matching_queries_n": 40,
   "matching": {
+    "baseline": "random_order_in_the_same_eligible_pool",
     "mean_ndcg_at_5": 0.9799,
-    "random_mean_ndcg_at_5": 0.2117,
-    "mean_precision_at_5": 1.0
+    "random_mean_ndcg_at_5": 0.4991,
+    "mean_precision_at_5": 1.0,
+    "random_mean_precision_at_5": 0.85
   },
   "limitations": [
     "Responses simulated using the same IRT model used for scoring; optimistic and not independent empirical validation.",
     "Difficulties, grade cuts and weights are expert assumptions; no actual candidate calibration.",
-    "Matching relevance labels use a transparent synthetic rubric, not employer judgments or hiring outcomes."
+    "Frozen matching relevance labels use a transparent synthetic rubric, not employer judgments or hiring outcomes.",
+    "The random baseline uses the same category-eligible pool and the same labels as the ranker; the former all-profile random comparison was not a fair ranking baseline."
   ],
   "queries": [
     {
@@ -77,9 +81,11 @@
         "salary_to": 189000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 41,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.2702,
+      "random_ndcg_at_5": 0.7058,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         85,
         29,
@@ -101,9 +107,11 @@
         "salary_to": 214000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 71,
       "ndcg_at_5": 0.8777,
-      "random_ndcg_at_5": 0.1543,
+      "random_ndcg_at_5": 0.3674,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         56,
         7,
@@ -125,9 +133,11 @@
         "salary_to": 254000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 54,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.1479,
+      "random_ndcg_at_5": 0.4151,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         71,
         138,
@@ -149,9 +159,11 @@
         "salary_to": 191000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 71,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.2016,
+      "random_ndcg_at_5": 0.5134,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         56,
         27,
@@ -173,9 +185,11 @@
         "salary_to": 265000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 79,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.747,
+      "random_ndcg_at_5": 0.4286,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         87,
         52,
@@ -197,9 +211,11 @@
         "salary_to": 233000,
         "work_format": "office"
       },
+      "eligible_pool_n": 47,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0727,
+      "random_ndcg_at_5": 0.4618,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         9,
         21,
@@ -221,9 +237,11 @@
         "salary_to": 217000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 41,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0187,
+      "random_ndcg_at_5": 0.4539,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         85,
         77,
@@ -245,9 +263,11 @@
         "salary_to": 182000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 47,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0,
+      "random_ndcg_at_5": 0.3674,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         9,
         94,
@@ -269,9 +289,11 @@
         "salary_to": 290000,
         "work_format": "office"
       },
+      "eligible_pool_n": 71,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.512,
+      "random_ndcg_at_5": 0.6089,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         56,
         114,
@@ -293,9 +315,11 @@
         "salary_to": 150000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 47,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0,
+      "random_ndcg_at_5": 0.7808,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         94,
         120,
@@ -317,9 +341,11 @@
         "salary_to": 260000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 79,
       "ndcg_at_5": 0.925,
-      "random_ndcg_at_5": 0.1543,
+      "random_ndcg_at_5": 0.3674,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         1,
         52,
@@ -341,9 +367,11 @@
         "salary_to": 157000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 54,
       "ndcg_at_5": 0.8777,
-      "random_ndcg_at_5": 0.1188,
+      "random_ndcg_at_5": 0.4286,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         80,
         138,
@@ -365,9 +393,11 @@
         "salary_to": 275000,
         "work_format": "office"
       },
+      "eligible_pool_n": 53,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.1298,
+      "random_ndcg_at_5": 0.3801,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         26,
         91,
@@ -389,9 +419,11 @@
         "salary_to": 262000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 79,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.3559,
+      "random_ndcg_at_5": 0.3801,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         116,
         87,
@@ -413,9 +445,11 @@
         "salary_to": 242000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 54,
       "ndcg_at_5": 0.9165,
-      "random_ndcg_at_5": 0.1543,
+      "random_ndcg_at_5": 0.4509,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         80,
         89,
@@ -437,9 +471,11 @@
         "salary_to": 193000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 71,
       "ndcg_at_5": 0.9165,
-      "random_ndcg_at_5": 0.1353,
+      "random_ndcg_at_5": 0.6224,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         56,
         114,
@@ -461,9 +497,11 @@
         "salary_to": 178000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 41,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.2806,
+      "random_ndcg_at_5": 0.3674,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.6,
       "top_ids": [
         77,
         85,
@@ -485,9 +523,11 @@
         "salary_to": 188000,
         "work_format": "office"
       },
+      "eligible_pool_n": 41,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0562,
+      "random_ndcg_at_5": 0.7797,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         88,
         45,
@@ -509,9 +549,11 @@
         "salary_to": 156000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 54,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.3008,
+      "random_ndcg_at_5": 0.2705,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.6,
       "top_ids": [
         138,
         124,
@@ -533,9 +575,11 @@
         "salary_to": 283000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 53,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.4118,
+      "random_ndcg_at_5": 0.5774,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         132,
         142,
@@ -557,9 +601,11 @@
         "salary_to": 293000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 47,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0,
+      "random_ndcg_at_5": 0.5859,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         94,
         120,
@@ -581,9 +627,11 @@
         "salary_to": 221000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 79,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.2265,
+      "random_ndcg_at_5": 0.4286,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         87,
         48,
@@ -605,9 +653,11 @@
         "salary_to": 240000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 71,
       "ndcg_at_5": 0.9165,
-      "random_ndcg_at_5": 0.294,
+      "random_ndcg_at_5": 0.3317,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         56,
         114,
@@ -629,9 +679,11 @@
         "salary_to": 286000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 54,
       "ndcg_at_5": 0.925,
-      "random_ndcg_at_5": 0.1696,
+      "random_ndcg_at_5": 0.6974,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         145,
         80,
@@ -653,9 +705,11 @@
         "salary_to": 150000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 79,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.3925,
+      "random_ndcg_at_5": 0.6478,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         87,
         48,
@@ -677,9 +731,11 @@
         "salary_to": 179000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 47,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.1461,
+      "random_ndcg_at_5": 0.5035,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         21,
         94,
@@ -701,9 +757,11 @@
         "salary_to": 245000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 53,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0,
+      "random_ndcg_at_5": 0.3455,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.6,
       "top_ids": [
         26,
         132,
@@ -725,9 +783,11 @@
         "salary_to": 246000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 41,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0,
+      "random_ndcg_at_5": 0.4424,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         85,
         88,
@@ -749,9 +809,11 @@
         "salary_to": 205000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 47,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0562,
+      "random_ndcg_at_5": 0.6343,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         66,
         94,
@@ -773,9 +835,11 @@
         "salary_to": 240000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 41,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0917,
+      "random_ndcg_at_5": 0.5195,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.6,
       "top_ids": [
         77,
         85,
@@ -797,9 +861,11 @@
         "salary_to": 280000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 53,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.1353,
+      "random_ndcg_at_5": 0.2832,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.6,
       "top_ids": [
         132,
         142,
@@ -821,9 +887,11 @@
         "salary_to": 171000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 53,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.2493,
+      "random_ndcg_at_5": 0.8281,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         26,
         132,
@@ -845,9 +913,11 @@
         "salary_to": 214000,
         "work_format": "office"
       },
+      "eligible_pool_n": 54,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.4179,
+      "random_ndcg_at_5": 0.3317,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         71,
         145,
@@ -869,9 +939,11 @@
         "salary_to": 261000,
         "work_format": "office"
       },
+      "eligible_pool_n": 79,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.5587,
+      "random_ndcg_at_5": 0.3868,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         52,
         72,
@@ -893,9 +965,11 @@
         "salary_to": 148000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 71,
       "ndcg_at_5": 0.8416,
-      "random_ndcg_at_5": 0.4019,
+      "random_ndcg_at_5": 0.4643,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         56,
         114,
@@ -917,9 +991,11 @@
         "salary_to": 202000,
         "work_format": "office"
       },
+      "eligible_pool_n": 71,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.2385,
+      "random_ndcg_at_5": 0.5508,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         56,
         114,
@@ -941,9 +1017,11 @@
         "salary_to": 224000,
         "work_format": "hybrid"
       },
+      "eligible_pool_n": 47,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0,
+      "random_ndcg_at_5": 0.587,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         94,
         120,
@@ -965,9 +1043,11 @@
         "salary_to": 152000,
         "work_format": "remote"
       },
+      "eligible_pool_n": 41,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.3008,
+      "random_ndcg_at_5": 0.6124,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         85,
         29,
@@ -989,9 +1069,11 @@
         "salary_to": 207000,
         "work_format": "office"
       },
+      "eligible_pool_n": 53,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.0727,
+      "random_ndcg_at_5": 0.4286,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 0.8,
       "top_ids": [
         26,
         91,
@@ -1013,9 +1095,11 @@
         "salary_to": 273000,
         "work_format": "office"
       },
+      "eligible_pool_n": 53,
       "ndcg_at_5": 1.0,
-      "random_ndcg_at_5": 0.4935,
+      "random_ndcg_at_5": 0.6258,
       "precision_at_5": 1.0,
+      "random_precision_at_5": 1.0,
       "top_ids": [
         26,
         91,

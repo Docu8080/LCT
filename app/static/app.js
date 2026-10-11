@@ -126,7 +126,9 @@ async function api(path, options = {}) {
       ? { body: JSON.stringify(options.body) }
       : {}),
   });
-  const data = await res.json().catch(() => ({ detail: 'Сервер не вернул ответ' }));
+  const data = await res.json().catch(() => {
+    throw new Error('Сервер вернул неожиданный ответ. Повторите попытку.');
+  });
   if (!res.ok) {
     const message = Array.isArray(data.detail)
       ? data.detail.map((x) => `${x.loc.at(-1)}: ${x.msg}`).join(';')
@@ -649,14 +651,27 @@ async function login(email, password) {
   else go(next);
 }
 async function waitForSavedAnswers() {
-  await saveQueue;
+  let queued;
+  do {
+    queued = saveQueue;
+    await queued;
+  } while (queued !== saveQueue);
   if (saveFailed)
     throw new Error('Есть несохранённые ответы. Повторите сохранение или обновите страницу.');
 }
 async function demoLogin(role, reset = false) {
-  if (reset) await saveQueue;
-  else await waitForSavedAnswers();
-  user = await post('/auth/demo', { role, reset });
+  const fields = $$('[data-answer]').map((input) => ({ input, disabled: input.disabled }));
+  for (const { input } of fields) input.disabled = true;
+  try {
+    if (reset) await saveQueue;
+    else await waitForSavedAnswers();
+    user = await post('/auth/demo', { role, reset });
+  } catch (error) {
+    for (const { input, disabled } of fields) {
+      if (input.isConnected) input.disabled = disabled || attempt?.deadline <= Date.now() / 1000;
+    }
+    throw error;
+  }
   saveFailed = false;
   attempt = null;
   questionIndex = 0;
@@ -912,6 +927,7 @@ document.addEventListener('click', async (e) => {
       await demoLogin(target.dataset.role, target.dataset.reset === 'true');
     }
     if (a === 'demo-switch') {
+      target.disabled = true;
       await demoLogin(user.role === 'candidate' ? 'employer' : 'candidate');
     }
     if (a === 'demo-reset')
