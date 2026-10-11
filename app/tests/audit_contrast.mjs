@@ -119,15 +119,24 @@ if (process.argv.includes('--self-test')) {
       '--no-default-browser-check',
       'about:blank',
     ],
-    { stdio: 'ignore', windowsHide: true }
+    { stdio: ['ignore', 'ignore', 'pipe'], windowsHide: true }
   );
+  let launchError,
+    browserStderr = '';
+  child.on('error', (error) => {
+    launchError = error;
+  });
+  child.stderr.on('data', (chunk) => {
+    browserStderr = (browserStderr + chunk).slice(-8192);
+  });
   let ws;
   const pending = new Map();
   const browserErrors = [];
   let nextId = 0;
   try {
     let port;
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 300; i++) {
+      if (launchError || child.exitCode !== null || child.signalCode !== null) break;
       try {
         port = fs.readFileSync(path.join(profile, 'DevToolsActivePort'), 'utf8').split('\n')[0];
         break;
@@ -135,7 +144,10 @@ if (process.argv.includes('--self-test')) {
         await sleep(100);
       }
     }
-    if (!port) throw new Error('Chrome did not start. Set CHROME_PATH to your browser executable.');
+    if (!port)
+      throw new Error(
+        `Chrome did not start within 30 seconds (${chrome}; exit=${child.exitCode}; signal=${child.signalCode}). ${launchError?.message || browserStderr}`
+      );
     const tabs = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json();
     ws = new WebSocket(tabs.find((tab) => tab.type === 'page').webSocketDebuggerUrl);
     await new Promise((resolve, reject) => {
