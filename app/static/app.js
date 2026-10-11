@@ -473,7 +473,10 @@ async function invitationsPage() {
 }
 async function invitationModal(id) {
   const i = invitationsData.find((x) => x.id == id);
-  if (i.status === 'sent') await patch('/invitations/' + id, { status: 'viewed' });
+  if (i.status === 'sent') {
+    await patch('/invitations/' + id, { status: 'viewed' });
+    await render();
+  }
   modal(
     'Приглашение от ' + esc(i.company.name),
     `${badge(i.title)}<p>${esc(i.company.description)}</p><div class="salary">${salary(i)} / месяц</div><p class="plainline">${esc(i.description)}</p><div class="divider"></div><h3>Контакт компании</h3><p>${esc(i.contact)}</p>${notice('Ваши имя и контакты откроются этой компании только после принятия с отдельным разрешением.')}<div class="modalfoot">${btn('Принять приглашение', 'accept-invite', '', `data-id="${id}"`)}</div>`
@@ -798,6 +801,7 @@ document.addEventListener('submit', async (e) => {
       );
       closeModal();
       toast('Приглашение отправлено кандидату');
+      await render();
     }
     if (type === 'accept') {
       await patch('/invitations/' + form.dataset.id, {

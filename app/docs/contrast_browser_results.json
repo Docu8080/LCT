@@ -119,7 +119,7 @@
       "skipped": []
     },
     "employer/matching-mobile": {
-      "checked": 53,
+      "checked": 52,
       "failures": [],
       "skipped": []
     },
@@ -136,7 +136,17 @@
     "Role switch",
     "Scenario reset",
     "Any work format survives profile save",
+    "Registration, email verification, test autosave, reload, finish and persisted result",
+    "Failed autosave blocks navigation and recovers after reconnect",
+    "Employer registration and persistent company edit",
+    "Password login and account deletion for both registered roles",
+    "Candidate profile persists after reload",
+    "Multiword search, invitation viewed/accepted, explicit contact consent and revocation",
+    "Published vacancy, candidate application and employer visibility",
+    "Task creation, assigned task answer, employer review, persistent score and notifications",
+    "Publication controls affect employer search",
     "Disabled demo controls stay hidden",
     "API docs describe the PDF body"
-  ]
+  ],
+  "browser_errors": []
 }

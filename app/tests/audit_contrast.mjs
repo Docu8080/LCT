@@ -1,4 +1,4 @@
-// Reproducible text contrast check on a running local demo; no browser package needed.
+// Browser workflows and text contrast on a disposable local demo; no browser package needed.
 // node tests/audit_contrast.mjs [report.json]; FSP_BASE_URL, CHROME_PATH override defaults.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,6 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { checkIntegration } from './browser_integration.mjs';
 
 export function contrastRatio(a, b) {
   const luminance = (rgb) =>
@@ -122,6 +123,7 @@ if (process.argv.includes('--self-test')) {
   );
   let ws;
   const pending = new Map();
+  const browserErrors = [];
   let nextId = 0;
   try {
     let port;
@@ -143,6 +145,12 @@ if (process.argv.includes('--self-test')) {
     ws.onmessage = (message) => {
       const data = JSON.parse(message.data),
         task = pending.get(data.id);
+      if (data.method === 'Runtime.exceptionThrown')
+        browserErrors.push(
+          data.params.exceptionDetails.exception?.description || data.params.exceptionDetails.text
+        );
+      if (data.method === 'Network.responseReceived' && data.params.response.status >= 500)
+        browserErrors.push(`${data.params.response.status}: ${data.params.response.url}`);
       if (task) {
         pending.delete(data.id);
         clearTimeout(task.timeout);
@@ -168,12 +176,16 @@ if (process.argv.includes('--self-test')) {
         awaitPromise: true,
         returnByValue: true,
       });
-      if (result.exceptionDetails) throw new Error(result.exceptionDetails.text);
+      if (result.exceptionDetails)
+        throw new Error(
+          result.exceptionDetails.exception?.description || result.exceptionDetails.text
+        );
       return result.result.value;
     };
     await send('Browser.getVersion');
     await send('Page.enable');
     await send('Runtime.enable');
+    await send('Network.enable');
     await send('Emulation.setDeviceMetricsOverride', {
       width: 1440,
       height: 1000,
@@ -308,6 +320,9 @@ if (process.argv.includes('--self-test')) {
         await audit(role + '/' + route);
       }
     }
+    report.workflow_checks.push(...(await checkIntegration({ evaluate, visit, send })));
+    await visit('matching');
+    fs.mkdirSync(path.join(root, 'data'), { recursive: true });
     await send('Page.captureScreenshot', { format: 'png' }).then((r) =>
       fs.writeFileSync(path.join(root, 'data/contrast-desktop.png'), Buffer.from(r.data, 'base64'))
     );
@@ -342,6 +357,8 @@ if (process.argv.includes('--self-test')) {
     );
     await audit('api/docs');
     report.workflow_checks.push('API docs describe the PDF body');
+    report.browser_errors = browserErrors;
+    assert.deepEqual(browserErrors, [], 'Browser exceptions or server errors');
     const output = path.resolve(
       process.argv[2] || path.join(root, 'docs/contrast_browser_results.json')
     );

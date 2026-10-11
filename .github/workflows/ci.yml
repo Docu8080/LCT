@@ -29,3 +29,4 @@ jobs:
           docker run -d --name ltn-smoke -p 127.0.0.1:18080:8080 ltn-smoke
           trap 'docker logs ltn-smoke; docker rm -f ltn-smoke' EXIT
           python app/tests/smoke_container.py
+          FSP_BASE_URL=http://127.0.0.1:18080 CHROME_PATH=google-chrome CHROME_NO_SANDBOX=1 node app/tests/audit_contrast.mjs
