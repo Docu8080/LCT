@@ -1,6 +1,7 @@
 {
   "seed": 20261010,
-  "dataset_sha256": "04de0d3802d5baf9b0d350a36b31230cdcf5cb9a01f83e161a40e450a0dc3aae",
+  "dataset_sha256": "7d9d63154951bb0449332cf8862f810898914f9942ad70b71d495ec4c0a7409b",
+  "dataset_hash_encoding": "UTF-8 with LF line endings",
   "assessment_n": 720,
   "assessment": [
     {

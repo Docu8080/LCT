@@ -66,7 +66,8 @@ def validate():
                 }
             )
 
-    dataset = json.loads(DATASET.read_text(encoding="utf-8"))
+    dataset_text = DATASET.read_text(encoding="utf-8")
+    dataset = json.loads(dataset_text)
     profiles = dataset["profiles"]
     queries = []
     for query in dataset["queries"]:
@@ -103,7 +104,8 @@ def validate():
 
     return {
         "seed": dataset["seed"],
-        "dataset_sha256": hashlib.sha256(DATASET.read_bytes()).hexdigest(),
+        "dataset_sha256": hashlib.sha256(dataset_text.encode("utf-8")).hexdigest(),
+        "dataset_hash_encoding": "UTF-8 with LF line endings",
         "assessment_n": 720,
         "assessment": assessment,
         "matching_profiles_n": len(profiles),
