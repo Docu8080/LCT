@@ -314,7 +314,8 @@ def throttle(request,key,limit=15):
 def current(request:Request):
     token=request.cookies.get("fsp_session","")
     with db() as conn:
-        row=conn.execute("SELECT u.*,s.csrf FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token=? AND s.expires>?",(digest(token),time.time())).fetchone()
+        now=time.time()
+        row=conn.execute("SELECT u.*,s.csrf FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token=? AND s.expires>? AND (u.demo_scope IS NULL OR EXISTS(SELECT 1 FROM demo_pairs d WHERE d.token=u.demo_scope AND d.expires>?))",(digest(token),now,now)).fetchone()
     if not row:raise HTTPException(401,"Войдите в аккаунт")
     if not row["consent"]:raise HTTPException(403,"Согласие на обработку данных отозвано")
     if request.method in {"POST","PATCH","PUT","DELETE"} and not hmac.compare_digest(row["csrf"],request.headers.get("x-csrf-token","")):
@@ -377,8 +378,13 @@ def send_code(email,code):
 
 def session_response(conn,user,response):
     token,csrf=secrets.token_urlsafe(32),secrets.token_urlsafe(32)
-    conn.execute("INSERT INTO sessions VALUES(?,?,?,?)",(digest(token),user["id"],csrf,time.time()+86400))
-    response.set_cookie("fsp_session",token,max_age=86400,httponly=True,samesite="strict",secure=COOKIE_SECURE,path="/")
+    now=time.time();expires=now+86400
+    if user['demo_scope']:
+        pair=conn.execute('SELECT expires FROM demo_pairs WHERE token=?',(user['demo_scope'],)).fetchone()
+        if not pair or pair['expires']<=now:raise HTTPException(401,'Демо-сценарий истёк')
+        expires=min(expires,pair['expires'])
+    conn.execute("INSERT INTO sessions VALUES(?,?,?,?)",(digest(token),user["id"],csrf,expires))
+    response.set_cookie("fsp_session",token,max_age=int(expires-now),httponly=True,samesite="strict",secure=COOKIE_SECURE,path="/")
     return {"id":user["id"],"email":user["email"],"name":user["name"],"role":user["role"],"csrf":csrf,"demo":DEMO,"browser_demo":bool(user['demo_scope'])}
 
 
@@ -505,7 +511,10 @@ def browser_demo(data:DemoData,request:Request,response:Response):
     if not DEMO:raise HTTPException(404,'Демо-режим отключён')
     if request.headers.get('origin')!=f'{request.url.scheme}://{request.headers.get("host")}':raise HTTPException(403,'Недопустимый источник запроса')
     throttle(request,'demo',60)
-    if request.cookies.get('fsp_session'):current(request)
+    if request.cookies.get('fsp_session'):
+        try:current(request)
+        except HTTPException as error:
+            if error.status_code!=401:raise
     scope=digest(request.cookies.get('fsp_demo_pair',''))
     now=time.time()
     with db() as conn:
@@ -747,7 +756,7 @@ class AnswersData(BaseModel):
 def eligibility(conn,uid,spec,grade):
     now=time.time()
     cat=conn.execute('SELECT * FROM categories WHERE user_id=? AND spec=?',(uid,spec)).fetchone()
-    last=conn.execute("SELECT * FROM attempts WHERE user_id=? AND spec=? AND grade=? AND status='finished' ORDER BY created DESC LIMIT 1",(uid,spec,grade)).fetchone()
+    last=conn.execute("SELECT * FROM attempts WHERE user_id=? AND spec=? AND grade=? AND (status IN ('finished','expired') OR deadline<=?) ORDER BY created DESC LIMIT 1",(uid,spec,grade,now)).fetchone()
     if last and last['created']+30*86400>now:
         return False,'Повтор этого теста доступен через 30 дней после предыдущей попытки'
     if cat and grade!=cat['grade'] and cat['verified_at']+90*86400>now:

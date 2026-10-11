@@ -1,9 +1,17 @@
 """Public routes preserve HTTP 404 and API error contracts."""
 import unittest
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from fastapi.testclient import TestClient
 import server
 
 class PublicPageTests(unittest.TestCase):
+    def test_entry_html_preserves_utf8_text(self):
+        response=TestClient(server.app).get('/')
+        for text in ['ФСП Таланты','возможности находят вас','Загружаем ФСП Таланты']:
+            self.assertIn(text,response.text)
+
     def test_public_pages_and_missing_routes(self):
         client = TestClient(server.app)
         for path in ['/', '/terms', '/privacy', '/cookies', '/help', '/accessibility', '/login', '/register','/refunds','/consent','/operator','/deletion','/licenses']:
@@ -18,3 +26,4 @@ class PublicPageTests(unittest.TestCase):
         response = client.get('/api/not-a-real-endpoint')
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.json(), {'detail': 'Not Found'})
+

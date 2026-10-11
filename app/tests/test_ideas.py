@@ -78,6 +78,31 @@ class IdeasTests(unittest.TestCase):
         new=self.demo(self.client,'fresh');self.assertNotEqual(new['id'],user['id'])
         self.assertTrue(new['browser_demo'])
 
+    def test_demo_sessions_cannot_outlive_the_scenario(self):
+        self.demo(self.client)
+        expires=time.time()+20
+        with server.db() as conn:conn.execute('UPDATE demo_pairs SET expires=?',(expires,))
+        self.demo(self.client,'employer')
+        with server.db() as conn:
+            session=conn.execute('SELECT expires FROM sessions WHERE token=?',(server.digest(self.client.cookies.get('fsp_session')),)).fetchone()
+            self.assertLessEqual(session['expires'],expires)
+            conn.execute('UPDATE demo_pairs SET expires=?',(time.time()-1,))
+        self.assertEqual(self.client.get('/api/auth/me').status_code,401)
+        self.demo(self.client)
+
+    def test_stale_session_cookie_does_not_block_demo_reentry(self):
+        user=self.demo(self.client)
+        with server.db() as conn:conn.execute('UPDATE sessions SET expires=?',(time.time()-1,))
+        new=self.demo(self.client)
+        self.assertEqual(new['id'],user['id'])
+
+    def test_expired_test_attempt_keeps_the_retake_limit(self):
+        self.demo(self.client,'fresh')
+        choice={'specialization':'backend','grade':'Middle'}
+        started=self.client.post('/api/candidate/tests',json=choice).json()
+        with patch.object(server.time,'time',return_value=started['deadline']+1):
+            self.assertEqual(self.client.post('/api/candidate/tests',json=choice).status_code,409)
+
     def test_preview_fields_without_saving_or_assigning_category(self):
         self.demo(self.client,'fresh')
         before=self.client.get('/api/candidate/profile').json()

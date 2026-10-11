@@ -62,7 +62,8 @@ if(process.argv.includes('--self-test')){
   await send('Browser.getVersion');await send('Page.enable');await send('Runtime.enable');await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
   await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
   await send('Page.navigate',{url:base});await sleep(500);
-  const visit=async route=>{await evaluate(`location.hash=${JSON.stringify(route)}`);await sleep(150);for(let i=0;i<100;i++){if(await evaluate(`!!document.querySelector('#main-content,#public-content')&&!document.querySelector('.loading-skeleton')`))return;await sleep(50);}throw new Error('Page did not render: '+route);};
+  const workspaceRoutes=new Set(['overview','profile','tests','invitations','tasks','jobs','settings','matching','needs','company']);
+  const visit=async route=>{await evaluate(`location.hash=${JSON.stringify(route)}`);await sleep(150);for(let i=0;i<100;i++){if(await evaluate(`!!document.querySelector(${JSON.stringify(workspaceRoutes.has(route)?'#content':'#public-content')})&&!document.querySelector('.loading-skeleton')`)){if(await evaluate(`!!document.querySelector('#content .errorpage')`))throw new Error('Page loaded an error: '+route);return;}await sleep(50);}throw new Error('Page did not render: '+route);};
   const report={base,viewport:'1440×1000',limitations:'Solid ancestor backgrounds only. Skipped text and overlap need manual review.',pages:{}};
   const audit=async prefix=>{report.pages[prefix]=await evaluate(`(()=>{const contrastRatio=${contrastRatio.toString()};return (${inspectDocument.toString()})()})()`);};
   for(const route of ['home','login','register','privacy','terms','consent','help','accessibility','not-found']){await visit(route);await audit('public/'+route);}

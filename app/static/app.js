@@ -159,7 +159,8 @@ async function render(){
 }
 
 async function login(email,password){user=await post('/auth/login',{email,password});const next=user.role==='candidate'?'overview':'matching';if(location.hash==='#'+next)await render();else go(next);}
-async function demoLogin(role,reset=false){await saveQueue;user=await post('/auth/demo',{role,reset});attempt=null;questionIndex=0;closeModal();const next=user.role==='candidate'?'overview':'matching';if(location.hash==='#'+next)await render();else go(next);}
+async function waitForSavedAnswers(){await saveQueue;if(saveFailed)throw new Error('Есть несохранённые ответы. Повторите сохранение или обновите страницу.');}
+async function demoLogin(role,reset=false){if(reset)await saveQueue;else await waitForSavedAnswers();user=await post('/auth/demo',{role,reset});saveFailed=false;attempt=null;questionIndex=0;closeModal();const next=user.role==='candidate'?'overview':'matching';if(location.hash==='#'+next)await render();else go(next);}
 function profileBody(p){return {...p,phone:p.contacts?.phone||'',telegram:p.contacts?.telegram||''};}
 function numberFields(data,keys){for(const k of keys)data[k]=Number(data[k]);return data;}
 const splitSkills=s=>s.split(',').map(x=>x.trim()).filter(Boolean);
@@ -196,11 +197,11 @@ document.addEventListener('click',async e=>{if(e.target.closest('.skip-link')){e
  if(a==='auth-mode'){authMode=target.dataset.mode;if(location.hash==='#'+authMode){await render();$('#public-content')?.focus({preventScroll:true});}else go(authMode);}
  if(a==='auth-role'){authRole=target.dataset.role;landing();$(`[data-role="${authRole}"]`)?.focus();}
  if(a==='demo-login'){target.disabled=true;await demoLogin(target.dataset.role,target.dataset.reset==='true');}
- if(a==='demo-switch'){await saveQueue;await demoLogin(user.role==='candidate'?'employer':'candidate');}
+ if(a==='demo-switch'){await demoLogin(user.role==='candidate'?'employer':'candidate');}
  if(a==='demo-reset')modal('Начать личное демо заново?',`<p>Будут удалены только профили и действия вашего сценария. Другие браузеры сохранят свои данные.</p><div class="modalfoot">${btn('Отмена','close','outline')}${btn('Начать заново','demo-reset-confirm')}</div>`);
  if(a==='demo-reset-confirm'){target.disabled=true;await demoLogin(user.role,true);}
  if(a==='resend-code')modal('Повторить подтверждение email',`<form data-form="resend">${formError}${field('Email','email',verifyEmail,'email','required')}${field('Пароль аккаунта','password','','password','required minlength="8"')}<div class="modalfoot"><button>Получить новый код</button></div></form>`);
- if(a==='logout'){await post('/auth/logout');user=null;attempt=null;closeModal();authMode='login';go('home');await render();}
+ if(a==='logout'){await waitForSavedAnswers();await post('/auth/logout');user=null;attempt=null;closeModal();authMode='login';go('home');await render();}
  if(a==='notifications')await notificationModal();
  if(a==='delete-account')deletionModal();
  if(a==='erase-deactivated')deletionModal(true);
@@ -208,8 +209,8 @@ document.addEventListener('click',async e=>{if(e.target.closest('.skip-link')){e
  if(a==='read-notifications'){await post('/notifications/read');closeModal();toast('Уведомления прочитаны');}
  if(a==='unlink-fsp'){await del('/candidate/fsp');toast('ID отключён');await render();}
  if(a==='question'){questionIndex=Number(target.dataset.index);renderQuestion();$('#question-title')?.focus();}
- if(a==='finish-test'){await saveQueue;if(saveFailed)throw new Error('Есть несохранённые ответы. Обновите страницу и проверьте попытку.');const unanswered=attempt.questions.length-Object.keys(attempt.answers).filter(k=>attempt.answers[k]).length;modal('Завершить попытку?',`<p>${unanswered?`Осталось ${unanswered} заданий без ответа. Они будут считаться неверными.`:'Вы ответили на все задания.'} После завершения изменить ответы нельзя.</p><div class="modalfoot">${btn('Продолжить тест','close','outline')}${btn('Получить результат','finish-confirm','')}</div>`);}
- if(a==='finish-confirm'){await saveQueue;if(saveFailed)throw new Error('Ответы не сохранены');target.disabled=true;const r=await post('/candidate/tests/'+attempt.id+'/finish');attempt=null;closeModal();await render();modal('Результат тестирования',resultHTML(r));}
+ if(a==='finish-test'){await waitForSavedAnswers();const unanswered=attempt.questions.length-Object.keys(attempt.answers).filter(k=>attempt.answers[k]).length;modal('Завершить попытку?',`<p>${unanswered?`Осталось ${unanswered} заданий без ответа. Они будут считаться неверными.`:'Вы ответили на все задания.'} После завершения изменить ответы нельзя.</p><div class="modalfoot">${btn('Продолжить тест','close','outline')}${btn('Получить результат','finish-confirm','')}</div>`);}
+ if(a==='finish-confirm'){await waitForSavedAnswers();target.disabled=true;const r=await post('/candidate/tests/'+attempt.id+'/finish');attempt=null;closeModal();await render();modal('Результат тестирования',resultHTML(r));}
  if(a==='result'){const d=await api('/candidate/tests');modal('Результат тестирования',resultHTML(d.history.find(x=>x.id===id).result));}
  if(a==='candidate-detail'){closeModal();await candidateModal(id);}
  if(a==='match-explain')explainMatch(matches.find(p=>p.id==id));

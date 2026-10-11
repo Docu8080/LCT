@@ -18,3 +18,4 @@ jobs:
         env:
           PYTHON: python
       - run: node app/tests/audit_contrast.mjs --self-test
+      - run: node app/tests/check_save_state.mjs
