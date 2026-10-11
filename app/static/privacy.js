@@ -6,7 +6,11 @@
   const storageKey = 'fsp_cookie_notice';
   let acknowledged = false;
   let resizeObserver;
-  const updateNoticeHeight = notice => document.documentElement.style.setProperty('--cookie-notice-height', `${notice.getBoundingClientRect().height}px`);
+  const updateNoticeHeight = (notice) =>
+    document.documentElement.style.setProperty(
+      '--cookie-notice-height',
+      `${notice.getBoundingClientRect().height}px`
+    );
   try {
     acknowledged = localStorage.getItem(storageKey) === noticeVersion;
   } catch {
@@ -46,11 +50,11 @@
     if (hadFocus) {
       const settings = document.querySelector('[data-cookie-settings]');
       const destination = settings || document.querySelector('#main-content, #public-content');
-      destination?.focus({preventScroll: true});
+      destination?.focus({ preventScroll: true });
     }
   }
 
-  document.addEventListener('click', event => {
+  document.addEventListener('click', (event) => {
     const settings = event.target.closest('[data-cookie-settings]');
     const dismiss = event.target.closest('[data-cookie-dismiss]');
     if (settings) {
@@ -63,9 +67,13 @@
   });
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      if (!acknowledged) showCookieNotice();
-    }, {once: true});
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => {
+        if (!acknowledged) showCookieNotice();
+      },
+      { once: true }
+    );
   } else if (!acknowledged) {
     showCookieNotice();
   }

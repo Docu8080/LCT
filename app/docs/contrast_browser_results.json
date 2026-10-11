@@ -122,6 +122,11 @@
       "checked": 53,
       "failures": [],
       "skipped": []
+    },
+    "api/docs": {
+      "checked": 15,
+      "failures": [],
+      "skipped": []
     }
   },
   "workflow_checks": [
@@ -129,6 +134,9 @@
     "PDF upload and editable preview",
     "Applying PDF fields to the form",
     "Role switch",
-    "Scenario reset"
+    "Scenario reset",
+    "Any work format survives profile save",
+    "Disabled demo controls stay hidden",
+    "API docs describe the PDF body"
   ]
 }

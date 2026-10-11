@@ -456,6 +456,17 @@
         ],
         "summary": "Resume Preview",
         "operationId": "resume_preview_api_candidate_resume_preview_post",
+        "requestBody": {
+          "content": {
+            "application/pdf": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "Successful Response",

@@ -1,1 +1,42 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ФСП Таланты · API</title><link rel="icon" href="/static/icons/favicon.ico?v=20261011-icon1" sizes="any"><link rel="icon" href="/static/favicon.svg?v=20261011-icon1" type="image/svg+xml"><link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png?v=20261011-icon1"><link rel="stylesheet" href="/static/style.css"><script src="/static/api.js" defer></script></head><body><main class="content" style="max-width:1050px"><div class="pagehead"><div class="eyebrow">OPENAPI 3.1</div><h1>ФСП Таланты · API</h1><p class="subtitle">Контракт сервера с описанием запросов, ответов и ограничений.</p></div><div class="notice">Авторизация — cookie fsp_session. Для POST/PUT/PATCH/DELETE требуется X-CSRF-Token, возвращаемый при входе. Сеанс — 24 часа. Пользователь видит только данные своей роли и своей компании.</div><div class="spacer"></div><div class="flex wrap"><a class="button outline" href="/openapi.json" target="_blank">Схема OpenAPI JSON</a><a class="button secondary" href="/">Открыть приложение</a></div><div class="spacer"></div><label>Найти метод<input id="api-search" type="search" placeholder="Приглашения, tests, profile…"></label><div class="spacer"></div><div class="stack" id="api-paths">Загружаем контракт…</div></main></body></html>
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ФСП Таланты · API</title>
+    <link rel="icon" href="/static/icons/favicon.ico?v=20261011-icon1" sizes="any" />
+    <link rel="icon" href="/static/favicon.svg?v=20261011-icon1" type="image/svg+xml" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/icons/apple-touch-icon.png?v=20261011-icon1"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/api.js" defer></script>
+  </head>
+  <body>
+    <main class="content" style="max-width: 1050px">
+      <div class="pagehead">
+        <div class="eyebrow">OPENAPI 3.1</div>
+        <h1>ФСП Таланты · API</h1>
+        <p class="subtitle">Контракт сервера с описанием запросов, ответов и ограничений.</p>
+      </div>
+      <div class="notice">
+        Авторизация — cookie fsp_session. Для защищённых POST/PUT/PATCH/DELETE требуется
+        X-CSRF-Token, возвращаемый при входе. Сеанс — до 24 часов, в пределах срока демо-сценария.
+        Пользователь видит только данные своей роли и своей компании.
+      </div>
+      <div class="spacer"></div>
+      <div class="flex wrap">
+        <a class="button outline" href="/openapi.json" target="_blank">Схема OpenAPI JSON</a
+        ><a class="button secondary" href="/">Открыть приложение</a>
+      </div>
+      <div class="spacer"></div>
+      <label
+        >Найти метод<input id="api-search" type="search" placeholder="Приглашения, tests, profile…"
+      /></label>
+      <div class="spacer"></div>
+      <div class="stack" id="api-paths">Загружаем контракт…</div>
+    </main>
+  </body>
+</html>

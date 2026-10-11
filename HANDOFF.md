@@ -30,7 +30,7 @@ node tests/verify_frontend.mjs
 node tests/check_save_state.mjs
 ```
 
-Последний зафиксированный прогон — **35 успешных тестов**. Проверены демо-сценарии, их сброс/срок, изоляция объектов, многословный поиск, PDF-preview, просроченные cookie, пауза после истёкшей попытки и UTF-8 входной страницы. 450 сгенерированных JavaScript-ответов проверены исполнением; отдельная проверка покрывает ошибку и ожидание автосохранения. Повторный разбор — [POST_MERGE_REVIEW.md](app/docs/POST_MERGE_REVIEW.md), браузерный аудит — [FRONTEND_QA.md](app/docs/FRONTEND_QA.md). Модельные проверки описаны отдельно в [VALIDATION.md](app/docs/VALIDATION.md). Это синтетическая проверка свойств, а не доказательство качества найма.
+Последний зафиксированный прогон — **38 успешных тестов**. Проверены демо-сценарии, их сброс/срок, изоляция объектов, многословный поиск, PDF-preview, просроченные cookie, пауза после истёкшей попытки и UTF-8 входной страницы. 450 сгенерированных JavaScript-ответов проверены исполнением; отдельная проверка покрывает ошибку и ожидание автосохранения. Полная проверка кода — [CODE_QUALITY.md](app/docs/CODE_QUALITY.md). Повторный разбор — [POST_MERGE_REVIEW.md](app/docs/POST_MERGE_REVIEW.md), браузерный аудит — [FRONTEND_QA.md](app/docs/FRONTEND_QA.md). Модельные проверки описаны отдельно в [VALIDATION.md](app/docs/VALIDATION.md). Это синтетическая проверка свойств, а не доказательство качества найма.
 
 ## Карта исходников
 
@@ -42,7 +42,7 @@ node tests/check_save_state.mjs
 | `app/resume.py` | Ограниченный отдельный процесс для preview текстового PDF, без хранения файла |
 | `app/static/index.html`, `app/static/app.js` | Точка входа, hash-навигация и интерфейсы двух ролей |
 | `app/static/pages.js`, `app/static/privacy.js` | Публичные и юридические страницы, уведомление о необходимых cookie |
-| `app/static/style.css` | Активный адаптивный визуальный слой; `workspace.css` не подключён |
+| `app/static/style.css` | Активный адаптивный визуальный слой; неподключённый workspace.css удалён |
 | `app/static/api.html`, `app/static/api.js` | Локальная страница API без внешних CDN |
 | `app/static/icons/`, `app/static/mark.svg`, `app/static/favicon.svg`, `app/static/site.webmanifest` | Иконка приложения и варианты для браузера/устройств |
 | `app/fonts/`, `app/static/licenses/` | Комплектный DejaVu Sans для PDF, лицензия и сведения о происхождении ресурсов |

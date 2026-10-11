@@ -1,5 +1,37 @@
 'use strict';
-const escapeAPI=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const escapeAPI = (x) =>
+  String(x ?? '').replace(
+    /[&<>"']/g,
+    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]
+  );
 let schema;
-function showAPI(){let search=document.querySelector('#api-search').value.toLowerCase();let html='';for(const[path,methods]of Object.entries(schema.paths)){for(const[method,op]of Object.entries(methods)){if(!['get','post','put','patch','delete'].includes(method))continue;if(!(path+' '+op.summary+' '+op.tags?.join(' ')).toLowerCase().includes(search))continue;const request=op.requestBody?.content?.['application/json']?.schema;let resolved=request?.$ref?schema.components.schemas[request.$ref.split('/').at(-1)]:request;html+=`<details class="card"><summary style="cursor:pointer"><span class="pill ${method==='get'?'green':''}">${method.toUpperCase()}</span> <strong>${escapeAPI(path)}</strong><small style="float:right">${escapeAPI(op.tags?.join(' · '))}</small></summary><div class="spacer"></div><h3>${escapeAPI(op.summary)}</h3>${op.description?`<p>${escapeAPI(op.description)}</p>`:''}${op.parameters?.length?`<h3 style="margin-top:15px">Параметры</h3><pre class="codeblock">${escapeAPI(JSON.stringify(op.parameters,null,2))}</pre>`:''}${resolved?`<h3 style="margin-top:15px">Тело запроса</h3><pre class="codeblock">${escapeAPI(JSON.stringify(resolved,null,2))}</pre>`:''}<h3 style="margin-top:15px">Ответы</h3><pre class="codeblock">${escapeAPI(JSON.stringify(op.responses,null,2))}</pre></details>`;}}document.querySelector('#api-paths').innerHTML=html||'<p>Методы не найдены.</p>';}
-fetch('/openapi.json').then(r=>r.json()).then(s=>{schema=s;showAPI();document.querySelector('#api-search').addEventListener('input',showAPI)}).catch(()=>document.querySelector('#api-paths').textContent='Не удалось загрузить контракт. Обновите страницу.');
+function showAPI() {
+  const search = document.querySelector('#api-search').value.toLowerCase();
+  let html = '';
+  for (const [path, methods] of Object.entries(schema.paths)) {
+    for (const [method, op] of Object.entries(methods)) {
+      if (!['get', 'post', 'put', 'patch', 'delete'].includes(method)) continue;
+      if (!(path + ' ' + op.summary + ' ' + op.tags?.join(' ')).toLowerCase().includes(search))
+        continue;
+      const [mediaType, body] = Object.entries(op.requestBody?.content || {})[0] || [];
+      const request = body?.schema;
+      const resolved = request?.$ref
+        ? schema.components.schemas[request.$ref.split('/').at(-1)]
+        : request;
+      html += `<details class="card"><summary style="cursor:pointer"><span class="pill ${method === 'get' ? 'green' : ''}">${method.toUpperCase()}</span> <strong>${escapeAPI(path)}</strong><small style="float:right">${escapeAPI(op.tags?.join(' · '))}</small></summary><div class="spacer"></div><h3>${escapeAPI(op.summary)}</h3>${op.description ? `<p>${escapeAPI(op.description)}</p>` : ''}${op.parameters?.length ? `<h3 style="margin-top:15px">Параметры</h3><pre class="codeblock">${escapeAPI(JSON.stringify(op.parameters, null, 2))}</pre>` : ''}${resolved ? `<h3 style="margin-top:15px">Тело запроса · ${escapeAPI(mediaType)}</h3><pre class="codeblock">${escapeAPI(JSON.stringify(resolved, null, 2))}</pre>` : ''}<h3 style="margin-top:15px">Ответы</h3><pre class="codeblock">${escapeAPI(JSON.stringify(op.responses, null, 2))}</pre></details>`;
+    }
+  }
+  document.querySelector('#api-paths').innerHTML = html || '<p>Методы не найдены.</p>';
+}
+fetch('/openapi.json')
+  .then((r) => r.json())
+  .then((s) => {
+    schema = s;
+    showAPI();
+    document.querySelector('#api-search').addEventListener('input', showAPI);
+  })
+  .catch(
+    () =>
+      (document.querySelector('#api-paths').textContent =
+        'Не удалось загрузить контракт. Обновите страницу.')
+  );
