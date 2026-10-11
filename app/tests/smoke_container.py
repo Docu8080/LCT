@@ -30,7 +30,7 @@ if __name__ == "__main__":
         try:
             health = json.loads(request("/api/health"))
             break
-        except (urllib.error.URLError, TimeoutError):
+        except (urllib.error.URLError, TimeoutError, ConnectionError):
             if attempt == 29:
                 raise
             time.sleep(1)
